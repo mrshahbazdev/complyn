@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Coach\Http\Controllers\CoachController;
 
-Route::middleware(['auth', 'verified'])->prefix('coach')->name('coach.')->group(function () {
+Route::middleware(['auth', 'verified', 'module:coach'])->prefix('coach')->name('coach.')->group(function () {
     Route::get('/', [CoachController::class, 'index'])->name('index');
     Route::post('/sessions', [CoachController::class, 'storeSession'])->name('sessions.store');
     Route::get('/sessions/{session}', [CoachController::class, 'show'])->name('show');

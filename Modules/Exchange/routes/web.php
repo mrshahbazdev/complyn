@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Exchange\Http\Controllers\ExchangeController;
 
-Route::middleware(['auth', 'verified'])->prefix('exchange')->name('exchange.')->group(function () {
+Route::middleware(['auth', 'verified', 'module:exchange'])->prefix('exchange')->name('exchange.')->group(function () {
     Route::get('/', [ExchangeController::class, 'index'])->name('index');
     Route::post('/listings', [ExchangeController::class, 'store'])->name('store');
     Route::post('/listings/{listing}/inquire', [ExchangeController::class, 'inquire'])->name('inquire');

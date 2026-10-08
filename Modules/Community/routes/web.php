@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Community\Http\Controllers\CommunityController;
 
-Route::middleware(['auth', 'verified'])->prefix('community')->name('community.')->group(function () {
+Route::middleware(['auth', 'verified', 'module:community'])->prefix('community')->name('community.')->group(function () {
     Route::get('/', [CommunityController::class, 'index'])->name('index');
     Route::post('/posts', [CommunityController::class, 'store'])->name('posts.store');
     Route::get('/posts/{post}', [CommunityController::class, 'show'])->name('show');

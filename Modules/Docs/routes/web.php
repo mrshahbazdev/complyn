@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Docs\Http\Controllers\DocsController;
 
-Route::middleware(['auth', 'verified'])->prefix('docs')->name('docs.')->group(function () {
+Route::middleware(['auth', 'verified', 'module:docs'])->prefix('docs')->name('docs.')->group(function () {
     Route::get('/', [DocsController::class, 'index'])->name('index');
     Route::post('/', [DocsController::class, 'store'])->name('store');
     Route::get('/create', [DocsController::class, 'create'])->name('create');
