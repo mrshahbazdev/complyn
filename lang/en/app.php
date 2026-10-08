@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'platform_name' => 'COMPLYN',
+    'tagline' => 'Compliance platform for German Mittelstand',
+    'dashboard' => 'Dashboard',
+    'companies' => 'Companies',
+    'users' => 'Users',
+    'plans' => 'Plans',
+    'modules' => 'Modules',
+    'settings' => 'Settings',
+    'logout' => 'Log out',
+    'login' => 'Log in',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
+    'delete' => 'Delete',
+    'edit' => 'Edit',
+    'create' => 'Create',
+    'search' => 'Search',
+    'actions' => 'Actions',
+    'status' => 'Status',
+    'enabled' => 'Enabled',
+    'disabled' => 'Disabled',
+    'deprecated' => 'Deprecated',
+];
