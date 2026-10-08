@@ -17,6 +17,14 @@
                     </x-nav-link>
                     <x-nav-link :href="route('docs.index')" :active="request()->routeIs('docs.*')">{{ __('Docs') }}</x-nav-link>
                     <x-nav-link :href="route('files.index')" :active="request()->routeIs('files.*')">{{ __('Files') }}</x-nav-link>
+                    <x-nav-link :href="route('coach.index')" :active="request()->routeIs('coach.*')">{{ __("Coach") }}</x-nav-link>
+                    <x-nav-link :href="route('community.index')" :active="request()->routeIs('community.*')">{{ __("Community") }}</x-nav-link>
+                    <x-nav-link :href="route('score.index')" :active="request()->routeIs('score.*')">{{ __("Score") }}</x-nav-link>
+                    <x-nav-link :href="route('connect.index')" :active="request()->routeIs('connect.*')">{{ __("Connect") }}</x-nav-link>
+                    <x-nav-link :href="route('library.index')" :active="request()->routeIs('library.*')">{{ __("Library") }}</x-nav-link>
+                    <x-nav-link :href="route('creator.index')" :active="request()->routeIs('creator.*')">{{ __("Creator") }}</x-nav-link>
+                    <x-nav-link :href="route('academy.index')" :active="request()->routeIs('academy.*')">{{ __("Academy") }}</x-nav-link>
+                    <x-nav-link :href="route('exchange.index')" :active="request()->routeIs('exchange.*')">{{ __("Exchange") }}</x-nav-link>
                     @if(auth()->user()->is_platform_admin)<x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')">{{ __('Admin') }}</x-nav-link>@endif
                 </div>
             </div>

@@ -1,5 +1,13 @@
 {
     "Admin": true,
     "Core": true,
-    "Docs": true
+    "Docs": true,
+    "Coach": true,
+    "Community": true,
+    "Score": true,
+    "Connect": true,
+    "Library": true,
+    "Creator": true,
+    "Academy": true,
+    "Exchange": true
 }

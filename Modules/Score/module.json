@@ -1,0 +1,11 @@
+{
+    "name": "Score",
+    "alias": "score",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Score\\Providers\\ScoreServiceProvider"
+    ],
+    "files": []
+}
