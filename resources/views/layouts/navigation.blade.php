@@ -15,16 +15,34 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    @if(companyHasBlock(auth()->user(), 'docs'))<x-nav-link :href="route('docs.index')" :active="request()->@endifrouteIs('docs.*')">{{ __('Docs') }}</x-nav-link>
+                    @if(companyHasBlock(auth()->user(), 'docs'))
+                    <x-nav-link :href="route('docs.index')" :active="request()->routeIs('docs.*')">{{ __('Docs') }}</x-nav-link>
+                    @endif
                     <x-nav-link :href="route('files.index')" :active="request()->routeIs('files.*')">{{ __('Files') }}</x-nav-link>
-                    @if(companyHasBlock(auth()->user(), 'coach'))<x-nav-link :href="route('coach.index')" :active="request()->@endifrouteIs('coach.*')">{{ __("Coach") }}</x-nav-link>
-                    @if(companyHasBlock(auth()->user(), 'community'))<x-nav-link :href="route('community.index')" :active="request()->@endifrouteIs('community.*')">{{ __("Community") }}</x-nav-link>
-                    @if(companyHasBlock(auth()->user(), 'score'))<x-nav-link :href="route('score.index')" :active="request()->@endifrouteIs('score.*')">{{ __("Score") }}</x-nav-link>
-                    @if(companyHasBlock(auth()->user(), 'connect'))<x-nav-link :href="route('connect.index')" :active="request()->@endifrouteIs('connect.*')">{{ __("Connect") }}</x-nav-link>
-                    @if(companyHasBlock(auth()->user(), 'library'))<x-nav-link :href="route('library.index')" :active="request()->@endifrouteIs('library.*')">{{ __("Library") }}</x-nav-link>
-                    @if(companyHasBlock(auth()->user(), 'creator'))<x-nav-link :href="route('creator.index')" :active="request()->@endifrouteIs('creator.*')">{{ __("Creator") }}</x-nav-link>
-                    @if(companyHasBlock(auth()->user(), 'academy'))<x-nav-link :href="route('academy.index')" :active="request()->@endifrouteIs('academy.*')">{{ __("Academy") }}</x-nav-link>
-                    @if(companyHasBlock(auth()->user(), 'exchange'))<x-nav-link :href="route('exchange.index')" :active="request()->@endifrouteIs('exchange.*')">{{ __("Exchange") }}</x-nav-link>
+                    @if(companyHasBlock(auth()->user(), 'coach'))
+                    <x-nav-link :href="route('coach.index')" :active="request()->routeIs('coach.*')">{{ __("Coach") }}</x-nav-link>
+                    @endif
+                    @if(companyHasBlock(auth()->user(), 'community'))
+                    <x-nav-link :href="route('community.index')" :active="request()->routeIs('community.*')">{{ __("Community") }}</x-nav-link>
+                    @endif
+                    @if(companyHasBlock(auth()->user(), 'score'))
+                    <x-nav-link :href="route('score.index')" :active="request()->routeIs('score.*')">{{ __("Score") }}</x-nav-link>
+                    @endif
+                    @if(companyHasBlock(auth()->user(), 'connect'))
+                    <x-nav-link :href="route('connect.index')" :active="request()->routeIs('connect.*')">{{ __("Connect") }}</x-nav-link>
+                    @endif
+                    @if(companyHasBlock(auth()->user(), 'library'))
+                    <x-nav-link :href="route('library.index')" :active="request()->routeIs('library.*')">{{ __("Library") }}</x-nav-link>
+                    @endif
+                    @if(companyHasBlock(auth()->user(), 'creator'))
+                    <x-nav-link :href="route('creator.index')" :active="request()->routeIs('creator.*')">{{ __("Creator") }}</x-nav-link>
+                    @endif
+                    @if(companyHasBlock(auth()->user(), 'academy'))
+                    <x-nav-link :href="route('academy.index')" :active="request()->routeIs('academy.*')">{{ __("Academy") }}</x-nav-link>
+                    @endif
+                    @if(companyHasBlock(auth()->user(), 'exchange'))
+                    <x-nav-link :href="route('exchange.index')" :active="request()->routeIs('exchange.*')">{{ __("Exchange") }}</x-nav-link>
+                    @endif
                     @if(auth()->user()->is_platform_admin)<x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')">{{ __('Admin') }}</x-nav-link>@endif
                 </div>
             </div>
