@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('docs.index')" :active="request()->routeIs('docs.*')">{{ __('Docs') }}</x-nav-link>
+                    <x-nav-link :href="route('files.index')" :active="request()->routeIs('files.*')">{{ __('Files') }}</x-nav-link>
+                    @if(auth()->user()->is_platform_admin)<x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')">{{ __('Admin') }}</x-nav-link>@endif
                 </div>
             </div>
 
