@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* COMPLYN brand overrides — map Breeze indigo/gray to slate-900/amber */
+.bg-indigo-600 { background-color: #0f172a !important; }
+.bg-indigo-600:hover, .hover\:bg-indigo-700:hover, .bg-indigo-700 { background-color: #1e293b !important; }
+.bg-indigo-500 { background-color: #f59e0b !important; }
+.text-indigo-600 { color: #b45309 !important; }
+.text-indigo-600:hover, a.text-indigo-600:hover { color: #92400e !important; }
+.bg-indigo-100, .bg-indigo-50 { background-color: #fef3c7 !important; }
+.text-indigo-700, .text-indigo-800 { color: #92400e !important; }
+.focus\:ring-indigo-500:focus, .focus\:border-indigo-500:focus { --tw-ring-color: #f59e0b !important; border-color: #f59e0b !important; }
+.bg-gray-600 { background-color: #0f172a !important; }
+.bg-gray-600:hover { background-color: #1e293b !important; }
+
+/* cards: white panel -> branded rounded-2xl */
+.rounded-lg.shadow { border-radius: 1rem !important; border: 1px solid #e2e8f0 !important; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important; }
+
+/* form inputs: rounded-lg + slate border + amber focus */
+input.rounded, select.rounded, textarea.rounded { border-radius: 0.75rem !important; border-color: #cbd5e1 !important; }
+input.rounded:focus, select.rounded:focus, textarea.rounded:focus { border-color: #f59e0b !important; --tw-ring-color: #f59e0b !important; }
+
+/* table headers */
+table thead th { color: #64748b !important; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.05em; font-weight: 600; }
