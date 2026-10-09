@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class CoachController extends Controller
 {
+    private function company(Request $request)
+    {
+        return $request->user()->companies()->firstOrFail();
+    }
+
     public function index(Request $request)
     {
         $company = $request->user()->companies()->firstOrFail();
