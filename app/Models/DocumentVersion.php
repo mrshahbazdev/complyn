@@ -10,4 +10,9 @@ class DocumentVersion extends Model
     protected $fillable = ['document_id', 'version', 'path', 'original_name', 'size', 'mime'];
 
     public function document(): BelongsTo { return $this->belongsTo(Document::class); }
+
+    public function document()
+    {
+        return $this->belongsTo(\App\Models\Document::class);
+    }
 }

@@ -17,4 +17,9 @@ class Document extends Model
     public function category(): BelongsTo { return $this->belongsTo(Category::class); }
     public function versions(): HasMany { return $this->hasMany(DocumentVersion::class); }
     public function latestVersion() { return $this->hasOne(DocumentVersion::class)->latestOfMany('version'); }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }
