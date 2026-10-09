@@ -16,10 +16,15 @@
                  letter-spacing: .2em; }
         .brand .mark { width: 2.1rem; height: 2.1rem; border-radius: .55rem; background: #f59e0b;
                        color: #0f172a; display: flex; align-items: center; justify-content: center; }
-        .nav-links a { color: #cbd5e1; text-decoration: none; font-size: .875rem; margin-left: 1.5rem; }
+        .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; font-size: .875rem; }
         .nav-links a:hover { color: #fff; }
         .nav-links a.cta { background: #f59e0b; color: #0f172a; padding: .55rem 1.15rem;
                            border-radius: .7rem; font-weight: 700; }
+        .lang-sw { display: inline-flex; border: 1px solid #334155; border-radius: 999px; overflow: hidden; }
+        .lang-sw a { padding: .3rem .75rem; font-size: .75rem; font-weight: 700; color: #94a3b8;
+                     letter-spacing: .05em; }
+        .lang-sw a.on { background: #f59e0b; color: #0f172a; }
 
         .hero { background: #0f172a; color: #e2e8f0; padding: 5.5rem 2.5rem 5rem; }
         .hero-inner { max-width: 72rem; margin: 0 auto; display: grid;
@@ -94,9 +99,29 @@
         .cta-band h2 { font-size: 2rem; font-weight: 800; letter-spacing: -.02em; margin: 0 0 .8rem; color: #fff; }
         .cta-band p { color: #94a3b8; max-width: 34rem; margin: 0 auto 2rem; line-height: 1.65; }
 
-        .foot { margin-top: 4.5rem; padding: 2rem 2.5rem; border-top: 1px solid #e2e8f0;
-                display: flex; justify-content: space-between; align-items: center;
-                color: #94a3b8; font-size: .82rem; }
+        .foot { margin-top: 4.5rem; background: #0f172a; color: #94a3b8; padding: 3.5rem 2.5rem 2rem; }
+        .foot-inner { max-width: 72rem; margin: 0 auto; display: grid;
+                      grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.5rem; }
+        .foot .f-brand { display: flex; align-items: center; gap: .6rem; color: #fff; font-weight: 800;
+                         letter-spacing: .2em; margin-bottom: .9rem; }
+        .foot .f-brand .mark { width: 1.8rem; height: 1.8rem; border-radius: .45rem; background: #f59e0b;
+                               color: #0f172a; display: flex; align-items: center; justify-content: center;
+                               font-size: .75rem; }
+        .foot .f-about { font-size: .85rem; line-height: 1.65; color: #94a3b8; max-width: 20rem; }
+        .foot h4 { color: #fff; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
+                   margin: 0 0 1rem; }
+        .foot ul { list-style: none; margin: 0; padding: 0; }
+        .foot li { margin-bottom: .55rem; }
+        .foot a { color: #94a3b8; text-decoration: none; font-size: .85rem; }
+        .foot a:hover { color: #fbbf24; }
+        .foot-bottom { max-width: 72rem; margin: 2.5rem auto 0; padding-top: 1.5rem;
+                       border-top: 1px solid #1e293b; display: flex; justify-content: space-between;
+                       align-items: center; font-size: .78rem; color: #64748b; }
+        .foot-bottom .lang-sw { border-color: #334155; }
+        @media (max-width: 960px) {
+            .foot-inner { grid-template-columns: 1fr 1fr; }
+            .foot-bottom { flex-direction: column; gap: 1rem; }
+        }
 
         @media (max-width: 960px) {
             .hero-inner { grid-template-columns: 1fr; }
@@ -112,6 +137,10 @@
     <nav class="nav">
         <div class="brand"><span class="mark">C</span> COMPLYN</div>
         <div class="nav-links">
+            <span class="lang-sw">
+                <a href="{{ route('lang.switch', 'de') }}" class="{{ app()->getLocale() === 'de' ? 'on' : '' }}">DE</a>
+                <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() === 'en' ? 'on' : '' }}">EN</a>
+            </span>
             @auth
                 <a href="{{ route('dashboard') }}" class="cta">{{ __('Dashboard') }}</a>
             @else
@@ -221,8 +250,44 @@
     </section>
 
     <footer class="foot">
-        <div class="brand" style="color:#0f172a; font-size:.85rem;"><span class="mark" style="width:1.6rem;height:1.6rem;font-size:.75rem;">C</span> COMPLYN</div>
-        <span>{{ __('Compliance-Plattform für den Mittelstand') }}</span>
+        <div class="foot-inner">
+            <div>
+                <div class="f-brand"><span class="mark">C</span> COMPLYN</div>
+                <p class="f-about">{{ __('Die modulare Compliance-Plattform für den deutschen Mittelstand — Dokumente, KI-Coach, Expertennetzwerk und Academy in einem System.') }}</p>
+            </div>
+            <div>
+                <h4>{{ __('Plattform') }}</h4>
+                <ul>
+                    <li><a href="{{ route('register') }}">{{ __('Kostenlos starten') }}</a></li>
+                    <li><a href="{{ route('login') }}">{{ __('Anmelden') }}</a></li>
+                    <li><a href="#">{{ __('Tarife') }}</a></li>
+                    <li><a href="#">{{ __('Funktionen') }}</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>{{ __('Unternehmen') }}</h4>
+                <ul>
+                    <li><a href="#">{{ __('Über uns') }}</a></li>
+                    <li><a href="#">{{ __('Blog') }}</a></li>
+                    <li><a href="#">{{ __('Kontakt') }}</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>{{ __('Rechtliches') }}</h4>
+                <ul>
+                    <li><a href="#">{{ __('Datenschutz') }}</a></li>
+                    <li><a href="#">{{ __('Impressum') }}</a></li>
+                    <li><a href="#">{{ __('AGB') }}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <span>© {{ date('Y') }} COMPLYN — {{ __('Compliance-Plattform für den Mittelstand') }}</span>
+            <span class="lang-sw">
+                <a href="{{ route('lang.switch', 'de') }}" class="{{ app()->getLocale() === 'de' ? 'on' : '' }}">DE</a>
+                <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() === 'en' ? 'on' : '' }}">EN</a>
+            </span>
+        </div>
     </footer>
 </body>
 </html>
