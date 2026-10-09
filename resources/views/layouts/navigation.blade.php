@@ -47,8 +47,12 @@
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
+            <!-- Language + Settings -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <div class="flex items-center rounded-lg border border-slate-200 text-xs font-semibold me-4 overflow-hidden">
+                    <a href="{{ route('lang.switch', 'de') }}" class="px-2.5 py-1.5 {{ app()->getLocale() === 'de' ? 'bg-amber-500 text-slate-900' : 'text-slate-500 hover:text-slate-900' }}">DE</a>
+                    <a href="{{ route('lang.switch', 'en') }}" class="px-2.5 py-1.5 {{ app()->getLocale() === 'en' ? 'bg-amber-500 text-slate-900' : 'text-slate-500 hover:text-slate-900' }}">EN</a>
+                </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">

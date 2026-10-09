@@ -58,7 +58,11 @@
             </div>
 
             <!-- Form panel -->
-            <div class="flex flex-1 flex-col justify-center items-center bg-slate-50 px-6 py-12">
+            <div class="flex flex-1 flex-col justify-center items-center bg-slate-50 px-6 py-12 relative">
+                <div class="absolute top-6 right-6 flex items-center rounded-lg border border-slate-200 bg-white text-xs font-semibold overflow-hidden">
+                    <a href="{{ route('lang.switch', 'de') }}" class="px-2.5 py-1.5 {{ app()->getLocale() === 'de' ? 'bg-amber-500 text-slate-900' : 'text-slate-500 hover:text-slate-900' }}">DE</a>
+                    <a href="{{ route('lang.switch', 'en') }}" class="px-2.5 py-1.5 {{ app()->getLocale() === 'en' ? 'bg-amber-500 text-slate-900' : 'text-slate-500 hover:text-slate-900' }}">EN</a>
+                </div>
                 <a href="/" class="lg:hidden flex items-center gap-2 mb-8">
                     <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500 text-slate-900 font-extrabold">C</span>
                     <span class="text-lg font-bold text-slate-900">COMPLYN</span>
