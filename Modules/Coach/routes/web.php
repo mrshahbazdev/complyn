@@ -13,4 +13,6 @@ Route::middleware(['auth', 'verified', 'module:coach'])->prefix('coach')->name('
 
 Route::middleware(['auth', 'verified', 'module:coach'])->prefix('coach')->name('coach.')->group(function () {
     Route::get('/recommendations', [CoachController::class, 'recommendations'])->name('recommendations');
+    Route::get('/analysis', [CoachController::class, 'analysis'])->name('analysis');
+    Route::post('/industry', [CoachController::class, 'setIndustry'])->name('industry');
 });

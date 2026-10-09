@@ -43,6 +43,7 @@
             ],
             'coach' => [
                 'coach.recommendations' => 'Empfehlungen',
+                'coach.analysis' => 'Analyse',
                 'coach.index' => 'KI-Coach',
             ],
             'score' => [

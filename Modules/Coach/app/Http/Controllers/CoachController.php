@@ -80,4 +80,81 @@ class CoachController extends Controller
             $recs[] = ['severity' => 'success', 'title' => 'Alles im grünen Bereich', 'body' => 'Keine offenen Risiken erkannt. Vergleichbare Unternehmen in Ihrer Branche führen z. B. jährliche Unterweisungen durch — prüfen, ob solche Pflichten für Sie relevant sind.'];
         }
         return view('coach::recommendations', ['recs' => $recs]);
-    }}
+    }
+
+    /**
+     * Pflichtenerkennung + Branchenvergleich: typical duties for the company's
+     * industry, flagged as erfasst/fehlend (COMPLYN Coach scope: Unternehmensanalyse,
+     * Branchenvergleich, Pflichtenerkennung).
+     */
+    public function analysis(Request $request)
+    {
+        $company = $request->user()->companies()->firstOrFail();
+        $catalog = $this->dutyCatalog();
+        $industryKey = $company->industry?->key ?? 'other';
+        $typical = $catalog[$industryKey] ?? $catalog['other'];
+
+        $existing = \App\Models\CoreObligation::where('company_id', $company->id)->pluck('title')->map(fn($t) => mb_strtolower($t));
+        $rows = [];
+        foreach ($typical as $duty) {
+            $matched = $existing->contains(fn($t) => str_contains($t, mb_strtolower($duty['match'])));
+            $rows[] = ['duty' => $duty['title'], 'interval' => $duty['interval'], 'covered' => $matched];
+        }
+
+        return view('coach::analysis', [
+            'rows' => $rows,
+            'industry' => $company->industry,
+            'industries' => \App\Models\Industry::orderBy('name_de')->get(),
+            'covered' => collect($rows)->where('covered', true)->count(),
+            'total' => count($rows),
+        ]);
+    }
+
+    public function setIndustry(Request $request)
+    {
+        $company = $request->user()->companies()->firstOrFail();
+        $company->update($request->validate(['industry_id' => 'required|exists:industries,id']));
+        return back()->with('status', 'Branche gespeichert.');
+    }
+
+    private function dutyCatalog(): array
+    {
+        $base = [
+            ['title' => 'Datenschutz-Grundverordnung (DSGVO) Dokumentation', 'match' => 'dsgvo', 'interval' => 'jährlich'],
+            ['title' => 'Arbeitsschutz-Unterweisung', 'match' => 'unterweisung', 'interval' => 'jährlich'],
+            ['title' => 'Gefährdungsbeurteilung', 'match' => 'gefährdungsbeurteilung', 'interval' => 'alle 2 Jahre'],
+            ['title' => 'Sicherheitsbeauftragter bestellen (>20 MA)', 'match' => 'sicherheitsbeauftragt', 'interval' => 'laufend'],
+        ];
+        return [
+            'manufacturing' => array_merge($base, [
+                ['title' => 'Maschinen-Prüfung (Betriebssicherheitsverordnung)', 'match' => 'maschinen', 'interval' => 'jährlich'],
+                ['title' => 'Gefahrstoffverzeichnis pflegen', 'match' => 'gefahrstoff', 'interval' => 'laufend'],
+                ['title' => 'Lärm- und Emissionsschutz', 'match' => 'lärm', 'interval' => 'jährlich'],
+            ]),
+            'construction' => array_merge($base, [
+                ['title' => 'Baustellen-Sicherheitsplan (SiGeKo)', 'match' => 'sigeko', 'interval' => 'pro Baustelle'],
+                ['title' => 'Gerüst- und Leiterprüfung', 'match' => 'gerüst', 'interval' => 'jährlich'],
+            ]),
+            'logistics' => array_merge($base, [
+                ['title' => 'Fahrer-Unterweisung (BKrFQV)', 'match' => 'fahrer', 'interval' => 'jährlich'],
+                ['title' => 'Gefahrgut-Beauftragter', 'match' => 'gefahrgut', 'interval' => 'laufend'],
+            ]),
+            'healthcare' => array_merge($base, [
+                ['title' => 'Hygieneplan (IfSG)', 'match' => 'hygiene', 'interval' => 'jährlich'],
+                ['title' => 'Medizinprodukte-Betreiberverordnung', 'match' => 'medizinprodukte', 'interval' => 'laufend'],
+            ]),
+            'retail' => array_merge($base, [
+                ['title' => 'Lebensmittelhygiene-Schulung (LMHV)', 'match' => 'lebensmittel', 'interval' => 'jährlich'],
+            ]),
+            'it' => array_merge($base, [
+                ['title' => 'Informationssicherheit (ISO 27001 / BSI)', 'match' => 'informationssicherheit', 'interval' => 'jährlich'],
+            ]),
+            'hospitality' => array_merge($base, [
+                ['title' => 'Hygiene & HACCP-Dokumentation', 'match' => 'haccp', 'interval' => 'laufend'],
+                ['title' => 'Brandschutzbeauftragter', 'match' => 'brandschutz', 'interval' => 'laufend'],
+            ]),
+            'services' => $base,
+            'other' => $base,
+        ];
+    }
+}
