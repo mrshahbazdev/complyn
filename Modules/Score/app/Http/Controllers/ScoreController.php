@@ -32,12 +32,34 @@ class ScoreController extends Controller
     {
         $company = $request->user()->companies()->firstOrFail();
         $metrics = ScoreMetric::where('company_id', $company->id)->get();
-        $score = $metrics->count() ? min(100, (int) round($metrics->avg('value'))) : 0;
+
+        // Auto-KPIs from real module data (COMPLYN Score: Qualitätsbewertung).
+        $obligations = \App\Models\CoreObligation::where('company_id', $company->id)->where('status', 'active');
+        $obCount = (clone $obligations)->count();
+        $auto = collect();
+        if ($obCount) {
+            $auto->push(['key' => 'obligations_on_time', 'name' => 'Pflichten ohne Überfälligkeit (%)', 'value' => round(100 * (clone $obligations)->where(fn ($q) => $q->whereNull('next_due_at')->orWhere('next_due_at', '>=', now()->toDateString()))->count() / $obCount, 1)]);
+            $auto->push(['key' => 'obligations_with_responsible', 'name' => 'Pflichten mit Verantwortlichem (%)', 'value' => round(100 * (clone $obligations)->whereHas('responsibilities')->count() / $obCount, 1)]);
+            $auto->push(['key' => 'obligations_with_evidence', 'name' => 'Pflichten mit Nachweis (%)', 'value' => round(100 * (clone $obligations)->whereHas('evidences')->count() / $obCount, 1)]);
+        }
+        $tasks = \App\Models\CoreTask::where('company_id', $company->id);
+        $tCount = (clone $tasks)->count();
+        if ($tCount) {
+            $auto->push(['key' => 'tasks_completed', 'name' => 'Aufgaben erledigt (%)', 'value' => round(100 * (clone $tasks)->where('status', 'done')->count() / $tCount, 1)]);
+        }
+        $docs = \App\Models\Document::where('company_id', $company->id)->whereNotNull('expires_at');
+        $dCount = (clone $docs)->count();
+        if ($dCount) {
+            $auto->push(['key' => 'docs_not_expired', 'name' => 'Dokumente gültig (%)', 'value' => round(100 * (clone $docs)->where('expires_at', '>=', now()->toDateString())->count() / $dCount, 1)]);
+        }
+
+        $all = $metrics->map(fn ($m) => ['key' => $m->key, 'name' => $m->name_de, 'value' => $m->value])->merge($auto);
+        $score = $all->count() ? min(100, (int) round($all->avg('value'))) : 0;
         ScoreReport::create([
             'company_id' => $company->id,
             'title' => 'Compliance-Score ' . now()->format('d.m.Y'),
             'score' => $score,
-            'breakdown' => $metrics->map(fn ($m) => ['key' => $m->key, 'name' => $m->name_de, 'value' => $m->value])->all(),
+            'breakdown' => $all->all(),
         ]);
         return back()->with('status', "Report erstellt: {$score}/100");
     }
