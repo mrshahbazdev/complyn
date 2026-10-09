@@ -238,5 +238,11 @@
   "Branche gespeichert.": "Industry saved.",
   "Analyse": "Analysis",
   "Herunterladen": "Download",
-  "Zur Bibliothek": "Back to library"
+  "Zur Bibliothek": "Back to library",
+  "Nächste Fristen": "Upcoming deadlines",
+  "Tage": "days",
+  "überfällige Pflicht(en)": "overdue obligation(s)",
+  "Keine Fristen in den nächsten 30 Tagen.": "No deadlines in the next 30 days.",
+  "Offene Aufgaben": "Open tasks",
+  "Keine offenen Aufgaben.": "No open tasks."
 }

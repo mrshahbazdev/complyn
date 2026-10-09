@@ -16,6 +16,37 @@
                 <div class="text-sm text-gray-500">{{ __("Aktive Module") }}</div>
             </div>
         </div>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
+                <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Nächste Fristen") }} <span class="text-xs text-gray-500">(≤30 {{ __("Tage") }})</span></h3>
+                @if ($overdueObligations)
+                    <a href="{{ route('core.obligations') }}" class="block mb-2 text-sm text-red-600 font-medium">{{ $overdueObligations }} {{ __("überfällige Pflicht(en)") }}</a>
+                @endif
+                <ul class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+                    @forelse ($upcomingDeadlines as $d)
+                        <li class="py-2 flex justify-between gap-3">
+                            <span class="text-gray-800 dark:text-gray-200">{{ $d->title }}</span>
+                            <span class="text-gray-500 whitespace-nowrap">{{ optional($d->due_at)->format('d.m.Y') }}</span>
+                        </li>
+                    @empty
+                        <li class="py-2 text-gray-500">{{ __("Keine Fristen in den nächsten 30 Tagen.") }}</li>
+                    @endforelse
+                </ul>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
+                <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Offene Aufgaben") }}</h3>
+                <ul class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+                    @forelse ($openTasks as $t)
+                        <li class="py-2 flex justify-between gap-3">
+                            <span class="text-gray-800 dark:text-gray-200">{{ $t->title }}</span>
+                            <span class="text-gray-500 whitespace-nowrap">{{ optional($t->due_at)->format('d.m.Y') }}</span>
+                        </li>
+                    @empty
+                        <li class="py-2 text-gray-500">{{ __("Keine offenen Aufgaben.") }}</li>
+                    @endforelse
+                </ul>
+            </div>
+        </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
             <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Aktive Module") }}</h3>
             <div class="flex flex-wrap gap-2">

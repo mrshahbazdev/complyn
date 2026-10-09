@@ -26,6 +26,9 @@ class CoreController extends Controller
             'filesCount' => $company ? File::where('company_id', $company->id)->count() : 0,
             'notifications' => $request->user()->unreadNotifications()->take(5)->get(),
             'modules' => $company ? $company->enabledModules() : collect(),
+            'overdueObligations' => $company ? \App\Models\CoreObligation::where('company_id', $company->id)->where('status', 'active')->where('next_due_at', '<', now()->toDateString())->count() : 0,
+            'upcomingDeadlines' => $company ? \App\Models\CoreDeadline::where('company_id', $company->id)->where('status', 'open')->whereBetween('due_at', [now()->toDateString(), now()->addDays(30)->toDateString()])->orderBy('due_at')->take(8)->get() : collect(),
+            'openTasks' => $company ? \App\Models\CoreTask::where('company_id', $company->id)->where('status', 'open')->orderBy('due_at')->take(8)->get() : collect(),
         ]);
     }
 
