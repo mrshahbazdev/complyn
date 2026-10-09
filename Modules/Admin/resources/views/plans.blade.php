@@ -2,7 +2,7 @@
     <x-slot:title>Tarife</x-slot:title>
 
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-        <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">Neuer Tarif</h3>
+        <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Neuer Tarif") }}</h3>
         <form method="POST" action="{{ route('admin.plans.store') }}" class="flex flex-wrap gap-3 items-end">
             @csrf
             <input name="name" placeholder="Name" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">

@@ -4,7 +4,7 @@
     @if ($newToken)
         <div class="bg-yellow-50 dark:bg-yellow-900 border border-yellow-300 rounded p-4">
             <p class="text-sm text-yellow-800 dark:text-yellow-200 font-mono break-all">{{ $newToken }}</p>
-            <p class="text-xs text-yellow-600 mt-1">Jetzt kopieren — wird nur einmal angezeigt.</p>
+            <p class="text-xs text-yellow-600 mt-1">{{ __("Jetzt kopieren — wird nur einmal angezeigt.") }}</p>
         </div>
     @endif
 
@@ -13,7 +13,7 @@
             @csrf
             <input name="name" placeholder="Token-Name" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
             <select name="scope" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-                <option value="read">read</option><option value="content">content</option><option value="full">full</option>
+                <option value="read">{{ __("read") }}</option><option value="content">{{ __("content") }}</option><option value="full">{{ __("full") }}</option>
             </select>
             <button class="bg-indigo-600 text-white px-4 py-2 rounded">Token erstellen</button>
         </form>
@@ -22,7 +22,7 @@
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
         <table class="w-full text-sm">
             <thead><tr class="text-left text-gray-500 border-b dark:border-gray-700">
-                <th class="py-2">Name</th><th>Scope</th><th>Zuletzt genutzt</th><th>Erstellt</th><th></th>
+                <th class="py-2">{{ __("Name") }}</th><th>{{ __("Scope") }}</th><th>{{ __("Zuletzt genutzt") }}</th><th>{{ __("Erstellt") }}</th><th></th>
             </tr></thead>
             <tbody>
             @foreach ($tokens as $t)
@@ -34,7 +34,7 @@
                     <td class="text-right">
                         <form method="POST" action="{{ route('admin.mcp.destroy', $t) }}" onsubmit="return confirm('Token widerrufen?')">
                             @csrf @method('DELETE')
-                            <button class="text-red-500 text-xs">Widerrufen</button>
+                            <button class="text-red-500 text-xs">{{ __("Widerrufen") }}</button>
                         </form>
                     </td>
                 </tr>

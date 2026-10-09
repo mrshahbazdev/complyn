@@ -9,7 +9,7 @@
                 <textarea name="description" rows="2" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full">{{ $doc->description }}</textarea>
                 <div class="flex gap-3">
                     <select name="category_id" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-                        <option value="">— Kategorie —</option>
+                        <option value="">{{ __("— Kategorie —") }}</option>
                         @foreach (\App\Models\Category::orderBy('name_de')->get() as $c)<option value="{{ $c->id }}" @selected($doc->category_id === $c->id)>{{ $c->name_de }}</option>@endforeach
                     </select>
                     <select name="status" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
@@ -24,7 +24,7 @@
             </form>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">Versionen</h3>
+            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Versionen") }}</h3>
             <form method="POST" action="{{ route('docs.versions.upload', $doc) }}" enctype="multipart/form-data" class="flex gap-3 mb-3">
                 @csrf
                 <input type="file" name="file" required class="text-sm text-gray-700 dark:text-gray-300">

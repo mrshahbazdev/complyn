@@ -7,7 +7,7 @@
                 @csrf
                 <div class="flex gap-3">
                     <input name="title" placeholder="Titel (z. B. ISO 9001 Beratung gesucht)" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">
-                    <select name="type" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200"><option value="need">Suche</option><option value="offer">Angebot</option></select>
+                    <select name="type" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200"><option value="need">{{ __("Suche") }}</option><option value="offer">{{ __("Angebot") }}</option></select>
                 </div>
                 <textarea name="description" rows="2" placeholder="Beschreibung…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea>
                 <button class="bg-indigo-600 text-white px-4 py-2 rounded">Eintragen</button>

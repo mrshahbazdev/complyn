@@ -22,7 +22,7 @@
             {{ $posts->links() }}
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">Gruppen</h3>
+            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Gruppen") }}</h3>
             <form method="POST" action="{{ route('community.groups.store') }}" class="flex gap-3 mb-3">
                 @csrf
                 <input name="name" placeholder="Gruppenname" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">

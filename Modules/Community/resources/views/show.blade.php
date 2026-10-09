@@ -6,7 +6,7 @@
             <div class="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">{{ $post->body }}</div>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5 space-y-3">
-            <h3 class="font-semibold text-gray-900 dark:text-gray-100">Kommentare</h3>
+            <h3 class="font-semibold text-gray-900 dark:text-gray-100">{{ __("Kommentare") }}</h3>
             @foreach ($post->comments as $c)
                 <div class="text-sm border-b dark:border-gray-700 pb-2">
                     <span class="text-gray-500 text-xs">{{ $c->user->name }}:</span>

@@ -5,19 +5,19 @@
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
             <a href="{{ route('docs.index') }}" class="bg-white dark:bg-gray-800 rounded-lg p-5 shadow block">
                 <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ $docsCount }}</div>
-                <div class="text-sm text-gray-500">Dokumente</div>
+                <div class="text-sm text-gray-500">{{ __("Dokumente") }}</div>
             </a>
             <a href="{{ route('files.index') }}" class="bg-white dark:bg-gray-800 rounded-lg p-5 shadow block">
                 <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ $filesCount }}</div>
-                <div class="text-sm text-gray-500">Dateien</div>
+                <div class="text-sm text-gray-500">{{ __("Dateien") }}</div>
             </a>
             <div class="bg-white dark:bg-gray-800 rounded-lg p-5 shadow">
                 <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ $modules->count() }}</div>
-                <div class="text-sm text-gray-500">Aktive Module</div>
+                <div class="text-sm text-gray-500">{{ __("Aktive Module") }}</div>
             </div>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">Aktive Module</h3>
+            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Aktive Module") }}</h3>
             <div class="flex flex-wrap gap-2">
                 @foreach ($modules as $m)<span class="px-2 py-1 rounded text-xs bg-indigo-100 text-indigo-800">{{ $m->key }}</span>@endforeach
             </div>
@@ -28,12 +28,12 @@
         </div>
         @endif
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">Ungelesene Benachrichtigungen</h3>
+            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Ungelesene Benachrichtigungen") }}</h3>
             <ul class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
                 @forelse ($notifications as $n)
                     <li class="py-2 text-gray-800 dark:text-gray-200">{{ $n->data['title'] ?? class_basename($n->type) }}</li>
                 @empty
-                    <li class="py-2 text-gray-500">Keine neuen Benachrichtigungen.</li>
+                    <li class="py-2 text-gray-500">{{ __("Keine neuen Benachrichtigungen.") }}</li>
                 @endforelse
             </ul>
         </div>

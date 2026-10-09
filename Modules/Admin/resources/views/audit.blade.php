@@ -4,7 +4,7 @@
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
         <table class="w-full text-sm">
             <thead><tr class="text-left text-gray-500 border-b dark:border-gray-700">
-                <th class="py-2">Zeit</th><th>Token</th><th>Aktion</th><th>IP</th>
+                <th class="py-2">{{ __("Zeit") }}</th><th>{{ __("Token") }}</th><th>{{ __("Aktion") }}</th><th>IP</th>
             </tr></thead>
             <tbody>
             @foreach ($logs as $log)

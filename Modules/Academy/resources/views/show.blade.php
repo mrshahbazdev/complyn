@@ -6,7 +6,7 @@
             <div class="flex justify-between items-center">
                 <button @click="open=!open" class="text-left font-medium text-gray-800 dark:text-gray-200">{{ $loop->iteration }}. {{ $l->title }}</button>
                 @if ($doneLessonIds->contains($l->id))
-                    <span class="text-green-600 text-xs">✓ Fertig</span>
+                    <span class="text-green-600 text-xs">{{ __("✓ Fertig") }}</span>
                 @else
                     <form method="POST" action="{{ route('academy.complete', $l->id) }}">@csrf<button class="text-indigo-500 text-xs">Abschließen</button></form>
                 @endif

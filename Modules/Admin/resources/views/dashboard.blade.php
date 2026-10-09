@@ -12,7 +12,7 @@
 
     <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">Neueste Unternehmen</h3>
+            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Neueste Unternehmen") }}</h3>
             <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                 @foreach ($companies as $c)
                     <li class="py-2 flex justify-between text-sm">
@@ -23,7 +23,7 @@
             </ul>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">Letzte MCP-Aufrufe</h3>
+            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Letzte MCP-Aufrufe") }}</h3>
             <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                 @foreach ($logs as $log)
                     <li class="py-2 text-sm flex justify-between">

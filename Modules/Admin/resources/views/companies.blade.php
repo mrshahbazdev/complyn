@@ -1,8 +1,8 @@
 <x-admin::layout>
-    <x-slot:title>Unternehmen</x-slot:title>
+    <x-slot:title>{{ __("Unternehmen") }}</x-slot:title>
 
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-        <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">Neues Unternehmen</h3>
+        <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Neues Unternehmen") }}</h3>
         <form method="POST" action="{{ route('admin.companies.store') }}" class="flex flex-wrap gap-3 items-end">
             @csrf
             <input name="name" placeholder="Name" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
@@ -11,7 +11,7 @@
                 @foreach ($plans as $p)<option value="{{ $p->id }}">{{ $p->name }}</option>@endforeach
             </select>
             <select name="industry_id" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-                <option value="">— Branche —</option>
+                <option value="">{{ __("— Branche —") }}</option>
                 @foreach ($industries as $i)<option value="{{ $i->id }}">{{ $i->name_de }}</option>@endforeach
             </select>
             <button class="bg-indigo-600 text-white px-4 py-2 rounded">Anlegen</button>
@@ -21,7 +21,7 @@
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5" x-data="{ open: null }">
         <table class="w-full text-sm">
             <thead><tr class="text-left text-gray-500 border-b dark:border-gray-700">
-                <th class="py-2">Name</th><th>Tarif</th><th>Branche</th><th>Benutzer</th><th>Module</th><th></th>
+                <th class="py-2">{{ __("Name") }}</th><th>{{ __("Tarif") }}</th><th>{{ __("Branche") }}</th><th>{{ __("Benutzer") }}</th><th>{{ __("Module") }}</th><th></th>
             </tr></thead>
             <tbody>
             @foreach ($companies as $c)
@@ -36,7 +36,7 @@
                     <td class="text-right">
                         <form method="POST" action="{{ route('admin.companies.destroy', $c) }}" onsubmit="return confirm('Löschen?')" class="inline">
                             @csrf @method('DELETE')
-                            <button class="text-red-500 text-xs">Löschen</button>
+                            <button class="text-red-500 text-xs">{{ __("Löschen") }}</button>
                         </form>
                     </td>
                 </tr>

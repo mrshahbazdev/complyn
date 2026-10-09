@@ -21,7 +21,7 @@
                             <span class="text-gray-800 dark:text-gray-200">{{ $item->$field }}</span>
                             <form method="POST" action="{{ route('admin.taxonomy.destroy', [$type, $item->id]) }}">
                                 @csrf @method('DELETE')
-                                <button class="text-red-500 text-xs">×</button>
+                                <button class="text-red-500 text-xs">{{ __("×") }}</button>
                             </form>
                         </li>
                     @endforeach

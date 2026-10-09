@@ -7,7 +7,7 @@
                 @csrf
                 <input name="title" placeholder="Titel des Dokuments…" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">
                 <select name="type" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-                    <option value="document">Dokument</option><option value="checklist">Checkliste</option><option value="policy">Richtlinie</option>
+                    <option value="document">{{ __("Dokument") }}</option><option value="checklist">{{ __("Checkliste") }}</option><option value="policy">{{ __("Richtlinie") }}</option>
                 </select>
                 <button class="bg-indigo-600 text-white px-4 py-2 rounded">Anlegen</button>
             </form>

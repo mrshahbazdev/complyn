@@ -1,5 +1,5 @@
 <x-admin::layout>
-    <x-slot:title>Module</x-slot:title>
+    <x-slot:title>{{ __("Module") }}</x-slot:title>
 
     @foreach ($modules as $blockKey => $mods)
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">

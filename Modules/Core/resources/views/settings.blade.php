@@ -6,9 +6,9 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
             <form method="POST" action="{{ route('settings.company') }}" class="space-y-4">
                 @csrf @method('PUT')
-                <div><label class="text-sm text-gray-600 dark:text-gray-300">Name</label>
+                <div><label class="text-sm text-gray-600 dark:text-gray-300">{{ __("Name") }}</label>
                     <input name="name" value="{{ $company->name }}" required class="mt-1 rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></div>
-                <div><label class="text-sm text-gray-600 dark:text-gray-300">Branche</label>
+                <div><label class="text-sm text-gray-600 dark:text-gray-300">{{ __("Branche") }}</label>
                     <select name="industry_id" class="mt-1 rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full">
                         <option value="">—</option>
                         @foreach ($industries as $i)<option value="{{ $i->id }}" @selected($company->industry_id === $i->id)>{{ $i->name_de }}</option>@endforeach
@@ -18,7 +18,7 @@
             </form>
         </div>
         @else
-        <div class="bg-yellow-50 border border-yellow-300 rounded p-5 text-sm">Kein Unternehmen zugeordnet.</div>
+        <div class="bg-yellow-50 border border-yellow-300 rounded p-5 text-sm">{{ __("Kein Unternehmen zugeordnet.") }}</div>
         @endif
     </div></div>
 </x-app-layout>
