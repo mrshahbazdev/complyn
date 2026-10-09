@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CommunityComment extends Model
 {
-    protected $table = "community_comments";
-    protected $fillable = ["community_post_id","user_id","body"];
+    protected $table = 'community_comments';
+    protected $fillable = ['community_post_id', 'user_id', 'body'];
 
     public function user()
     {
@@ -16,6 +16,11 @@ class CommunityComment extends Model
 
     public function post()
     {
-        return $this->belongsTo(\App\Models\CommunityPost::class, "community_post_id");
+        return $this->belongsTo(\App\Models\CommunityPost::class, 'community_post_id');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(\App\Models\CommunityVote::class, 'community_comment_id');
     }
 }

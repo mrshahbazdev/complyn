@@ -32,6 +32,35 @@
             'academy' => 'M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222',
             'exchange' => 'M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4',
         ];
+        $subRoutes = [
+            'core' => [
+                'core.obligations' => 'Pflichtenkalender',
+                'core.deadlines' => 'Fristen',
+                'core.tasks' => 'Aufgaben',
+                'core.evidences' => 'Nachweise',
+                'files.index' => 'Dateien',
+                'settings' => 'Einstellungen',
+            ],
+            'coach' => [
+                'coach.recommendations' => 'Empfehlungen',
+                'coach.index' => 'KI-Coach',
+            ],
+            'score' => [
+                'score.index' => 'Übersicht',
+                'score.leaderboard' => 'Rangliste',
+            ],
+            'connect' => [
+                'connect.index' => 'Anfragen',
+                'connect.experts' => 'Experten',
+            ],
+            'exchange' => [
+                'exchange.index' => 'Marktplatz',
+                'exchange.groups' => 'Fachgruppen',
+            ],
+            'academy' => [
+                'academy.index' => 'Kurse',
+            ],
+        ];
         $locale = app()->getLocale();
     @endphp
 
@@ -67,6 +96,12 @@
                             <svg class="h-4.5 w-4.5 h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="{{ $icons[$blockKey] ?? 'M4 6h16M4 12h16M4 18h16' }}"/></svg>
                             {{ $block['name'][$locale] ?? $block['name']['de'] ?? $blockKey }}
                         </a>
+                        @if($active && isset($subRoutes[$blockKey]))
+                            @foreach($subRoutes[$blockKey] as $sr => $sl)
+                                @continue(!Route::has($sr))
+                                <a href="{{ route($sr) }}" class="ml-8 flex items-center px-3 py-1.5 rounded-lg text-xs transition {{ request()->routeIs($sr) ? 'text-amber-400 font-semibold' : 'text-slate-500 hover:text-white' }}">{{ __($sl) }}</a>
+                            @endforeach
+                        @endif
                     @endforeach
                 </div>
             </div>

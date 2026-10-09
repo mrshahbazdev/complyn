@@ -52,6 +52,7 @@ class DocsController extends Controller
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'nullable|string',
             'file' => 'nullable|file|max:51200',
+            'expires_at' => 'nullable|date',
         ]);
 
         $doc = Document::create($data + ['company_id' => $company->id, 'uploaded_by' => $request->user()->id, 'status' => 'published']);
@@ -82,7 +83,8 @@ class DocsController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category_id' => 'nullable|exists:categories,id',
-            'status' => 'required|in:draft,published,archived',
+            'status' => 'required|in:draft,published,archived,released',
+            'expires_at' => 'nullable|date',
         ]));
         if ($request->filled('tags')) {
             $doc->syncTagNames(array_map('trim', explode(',', $request->input('tags'))));
@@ -123,4 +125,13 @@ class DocsController extends Controller
 
         return Storage::disk(config('filesystems.documents_disk', 'local'))->download($v->path, $v->original_name);
     }
-}
+
+    public function release(Request $request, \App\Models\Document $document)
+    {
+        abort_unless($document->company_id === $this->company($request)->id, 403);
+        $document->update([
+            'released_at' => $document->released_at ? null : now(),
+            'status' => $document->released_at ? 'draft' : 'released',
+        ]);
+        return back()->with('status', $document->released_at ? 'Dokument freigegeben.' : 'Freigabe zurückgezogen.');
+    }}

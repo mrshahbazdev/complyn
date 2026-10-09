@@ -49,4 +49,44 @@ class ConnectController extends Controller
         $connectRequest->update(['status' => 'closed']);
         return back()->with('status', 'Anfrage geschlossen.');
     }
-}
+
+    public function experts(Request $request)
+    {
+        $company = $this->company($request);
+        $q = \App\Models\ConnectExpert::query()->with('industry');
+        if ($request->filled('specialty')) {
+            $q->where('specialty', 'like', '%' . $request->specialty . '%');
+        }
+        if ($request->filled('industry_id')) {
+            $q->where('industry_id', $request->industry_id);
+        }
+        if ($request->filled('location')) {
+            $q->where('location', 'like', '%' . $request->location . '%');
+        }
+        if ($request->filled('availability')) {
+            $q->where('availability', $request->availability);
+        }
+        if ($request->filled('min_exp')) {
+            $q->where('experience_years', '>=', $request->min_exp);
+        }
+        return view('connect::experts', [
+            'experts' => $q->orderByDesc('rating')->paginate(20),
+            'industries' => \App\Models\Industry::orderBy('name_de')->get(),
+        ]);
+    }
+
+    public function storeExpert(Request $request)
+    {
+        $company = $this->company($request);
+        \App\Models\ConnectExpert::create($request->validate([
+            'name' => 'required|string|max:255',
+            'specialty' => 'required|string|max:255',
+            'industry_id' => 'nullable|exists:industries,id',
+            'location' => 'nullable|string|max:255',
+            'experience_years' => 'nullable|integer|min:0|max:60',
+            'hourly_rate' => 'nullable|numeric|min:0',
+            'availability' => 'nullable|in:available,busy,unavailable',
+            'bio' => 'nullable|string',
+        ]) + ['company_id' => $company->id, 'user_id' => $request->user()->id]);
+        return back()->with('status', 'Expertenprofil angelegt.');
+    }}

@@ -13,3 +13,7 @@ Route::middleware(['auth', 'verified', 'module:docs'])->prefix('docs')->name('do
     Route::post('/{document}/versions', [DocsController::class, 'uploadVersion'])->name('versions.upload');
     Route::get('/{document}/versions/{version}/download', [DocsController::class, 'download'])->name('versions.download');
 });
+
+Route::middleware(['auth', 'verified', 'module:docs'])->prefix('docs')->name('docs.')->group(function () {
+    Route::put('/{document}/release', [DocsController::class, 'release'])->name('release');
+});

@@ -10,3 +10,8 @@ Route::middleware(['auth', 'verified', 'module:connect'])->prefix('connect')->na
     Route::post('/requests/{connectRequest}/messages', [ConnectController::class, 'message'])->name('messages.store');
     Route::put('/requests/{connectRequest}/close', [ConnectController::class, 'close'])->name('close');
 });
+
+Route::middleware(['auth', 'verified', 'module:connect'])->prefix('connect')->name('connect.')->group(function () {
+    Route::get('/experts', [ConnectController::class, 'experts'])->name('experts');
+    Route::post('/experts', [ConnectController::class, 'storeExpert'])->name('experts.store');
+});

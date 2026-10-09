@@ -51,4 +51,33 @@ class CoachController extends Controller
         CoachChecklist::create($request->validate(['title' => 'required|string|max:255']) + ['company_id' => $company->id]);
         return back()->with('status', 'Checkliste angelegt.');
     }
-}
+
+    public function recommendations(Request $request)
+    {
+        $company = $this->company($request);
+        $recs = [];
+        $overdueOb = \App\Models\CoreObligation::where('company_id', $company->id)->where('status', 'active')->where('next_due_at', '<', now()->toDateString())->count();
+        if ($overdueOb) {
+            $recs[] = ['severity' => 'critical', 'title' => 'Überfällige Pflichten', 'body' => "{$overdueOb} Pflicht(en) sind überfällig. Sofort nachholen und Nachweis ablegen."];
+        }
+        $unassigned = \App\Models\CoreObligation::where('company_id', $company->id)->where('status', 'active')->whereDoesntHave('responsibilities')->count();
+        if ($unassigned) {
+            $recs[] = ['severity' => 'warning', 'title' => 'Pflichten ohne Verantwortlichen', 'body' => "{$unassigned} Pflicht(en) haben keinen Verantwortlichen. Zuweisen, sonst bleiben sie liegen."];
+        }
+        $openTasks = \App\Models\CoreTask::where('company_id', $company->id)->where('status', 'open')->count();
+        if ($openTasks > 5) {
+            $recs[] = ['severity' => 'info', 'title' => 'Viele offene Aufgaben', 'body' => "{$openTasks} Aufgaben offen — priorisieren oder verteilen."];
+        }
+        $expiring = \App\Models\Document::where('company_id', $company->id)->where('expires_at', '<=', now()->addDays(30)->toDateString())->where('expires_at', '>=', now()->toDateString())->count();
+        if ($expiring) {
+            $recs[] = ['severity' => 'warning', 'title' => 'Dokumente laufen ab', 'body' => "{$expiring} Dokument(e) laufen in ≤30 Tagen ab — neue Version oder Verlängerung prüfen."];
+        }
+        $noEvidence = \App\Models\CoreObligation::where('company_id', $company->id)->where('status', 'active')->whereDoesntHave('evidences')->count();
+        if ($noEvidence) {
+            $recs[] = ['severity' => 'info', 'title' => 'Pflichten ohne Nachweis', 'body' => "{$noEvidence} Pflicht(en) haben noch keinen hinterlegten Nachweis."];
+        }
+        if (!$recs) {
+            $recs[] = ['severity' => 'success', 'title' => 'Alles im grünen Bereich', 'body' => 'Keine offenen Risiken erkannt. Vergleichbare Unternehmen in Ihrer Branche führen z. B. jährliche Unterweisungen durch — prüfen, ob solche Pflichten für Sie relevant sind.'];
+        }
+        return view('coach::recommendations', ['recs' => $recs]);
+    }}

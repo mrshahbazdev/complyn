@@ -11,7 +11,7 @@ class Document extends Model
 {
     use HasTags;
 
-    protected $fillable = ['company_id', 'category_id', 'uploaded_by', 'title', 'description', 'status'];
+    protected $fillable = ['company_id', 'category_id', 'uploaded_by', 'title', 'description', 'status', 'expires_at', 'released_at'];
 
     public function company(): BelongsTo { return $this->belongsTo(Company::class); }
     public function category(): BelongsTo { return $this->belongsTo(Category::class); }

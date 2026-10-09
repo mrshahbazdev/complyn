@@ -45,4 +45,41 @@ class ExchangeController extends Controller
         $listing->update(['status' => 'closed']);
         return back()->with('status', 'Geschlossen.');
     }
-}
+
+    public function groups(Request $request)
+    {
+        return view('exchange::groups', [
+            'groups' => \App\Models\ExchangeGroup::withCount('topics')->paginate(30),
+        ]);
+    }
+
+    public function storeGroup(Request $request)
+    {
+        \App\Models\ExchangeGroup::create($request->validate(['name' => 'required|string|max:255', 'topic' => 'nullable|string|max:255']));
+        return back()->with('status', 'Gruppe angelegt.');
+    }
+
+    public function group(Request $request, \App\Models\ExchangeGroup $group)
+    {
+        return view('exchange::group', [
+            'group' => $group,
+            'topics' => $group->topics()->with('user')->withCount('comments')->latest()->paginate(30),
+        ]);
+    }
+
+    public function storeTopic(Request $request, \App\Models\ExchangeGroup $group)
+    {
+        $group->topics()->create($request->validate(['title' => 'required|string|max:255', 'body' => 'required|string']) + ['user_id' => $request->user()->id]);
+        return back()->with('status', 'Diskussion gestartet.');
+    }
+
+    public function topic(Request $request, \App\Models\ExchangeTopic $topic)
+    {
+        return view('exchange::topic', ['topic' => $topic->load(['group', 'user', 'comments.user'])]);
+    }
+
+    public function comment(Request $request, \App\Models\ExchangeTopic $topic)
+    {
+        $topic->comments()->create($request->validate(['body' => 'required|string']) + ['user_id' => $request->user()->id]);
+        return back();
+    }}

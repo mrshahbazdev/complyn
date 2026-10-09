@@ -35,6 +35,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_expert',
+        'expert_label',
     ];
 
     /**
@@ -57,6 +59,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_expert' => 'boolean',
         ];
     }
 }

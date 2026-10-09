@@ -2,6 +2,7 @@
     <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200">{{ $doc->title }}</h2></x-slot>
     <div class="py-8"><div class="max-w-4xl mx-auto sm:px-6 lg:px-8 space-y-6">
         @if (session('status'))<div class="bg-green-100 text-green-800 px-4 py-2 rounded">{{ session('status') }}</div>@endif
+        <form method="POST" action="{{ route('docs.release', $doc) }}" class="inline">@csrf @method('PUT')<button class="text-amber-600 text-sm font-semibold underline">{{ $doc->released_at ? __("Freigabe zurückziehen") : __("Freigeben") }}</button></form>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
             <form method="POST" action="{{ route('docs.update', $doc) }}" class="space-y-3">
                 @csrf @method('PUT')

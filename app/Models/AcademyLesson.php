@@ -18,4 +18,8 @@ class AcademyLesson extends Model
     {
         return $this->hasMany(\App\Models\AcademyProgress::class, "academy_lesson_id");
     }
+    public function quizzes()
+    {
+        return $this->hasMany(\App\Models\AcademyQuiz::class, "academy_lesson_id");
+    }
 }

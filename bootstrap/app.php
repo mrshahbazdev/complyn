@@ -20,6 +20,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'module' => \App\Http\Middleware\EnsureModuleEnabled::class,
         ]);
     })
+    ->withSchedule(function (\Illuminate\Console\Scheduling\Schedule $schedule): void {
+        $schedule->command('complyn:remind')->dailyAt('07:00');
+    })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CommunityPost extends Model
 {
     protected $table = "community_posts";
-    protected $fillable = ["company_id","user_id","title","body"];
+    protected $fillable = ["company_id","user_id","title","body","status","accepted_comment_id"];
 
     public function user()
     {

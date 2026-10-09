@@ -41,4 +41,23 @@ class ScoreController extends Controller
         ]);
         return back()->with('status', "Report erstellt: {$score}/100");
     }
-}
+
+    public function leaderboard(Request $request)
+    {
+        $company = $this->company($request);
+        $users = $company->users()->get()->map(function ($u) use ($company) {
+            $posts = \App\Models\CommunityPost::where('company_id', $company->id)->where('user_id', $u->id)->count();
+            $answers = \App\Models\CommunityComment::where('user_id', $u->id)->whereHas('post', fn ($q) => $q->where('company_id', $company->id))->count();
+            $accepted = \App\Models\CommunityPost::where('company_id', $company->id)->where('accepted_comment_id', '>', 0)
+                ->whereHas('comments', fn ($q) => $q->where('user_id', $u->id))->count();
+            $votes = \App\Models\CommunityVote::whereHas('comment', fn ($q) => $q->where('user_id', $u->id))->count();
+            $points = $posts * 5 + $answers * 10 + $accepted * 20 + $votes;
+            return (object) [
+                'user' => $u, 'posts' => $posts, 'answers' => $answers, 'accepted' => $accepted,
+                'votes' => $votes, 'points' => $points,
+                'level' => $points >= 200 ? 'Experte' : ($points >= 100 ? 'Senior' : ($points >= 30 ? 'Mitglied' : 'Neuling')),
+                'badge' => $accepted >= 3 ? 'Fachbadge' : ($votes >= 10 ? 'Hilfsbereit' : null),
+            ];
+        })->sortByDesc('points')->values();
+        return view('score::leaderboard', ['rows' => $users]);
+    }}

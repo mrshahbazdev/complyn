@@ -10,3 +10,7 @@ Route::middleware(['auth', 'verified', 'module:coach'])->prefix('coach')->name('
     Route::post('/sessions/{session}/ask', [CoachController::class, 'ask'])->name('ask');
     Route::post('/checklists', [CoachController::class, 'storeChecklist'])->name('checklists.store');
 });
+
+Route::middleware(['auth', 'verified', 'module:coach'])->prefix('coach')->name('coach.')->group(function () {
+    Route::get('/recommendations', [CoachController::class, 'recommendations'])->name('recommendations');
+});
