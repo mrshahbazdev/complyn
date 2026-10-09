@@ -18,7 +18,7 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
             <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Vorlagen") }}</h3>
             <ul class="text-sm space-y-1">
-                @foreach ($templates as $t)<li class="text-gray-800 dark:text-gray-200">• {{ $t->name }} <span class="text-xs text-gray-500">({{ $t->type }})</span></li>@endforeach
+                @foreach ($templates as $t)<li class="text-gray-800 dark:text-gray-200">• <a href="{{ route('library.template', $t) }}" class="text-amber-600 hover:underline">{{ $t->name }}</a> <span class="text-xs text-gray-500">({{ $t->type }})</span></li>@endforeach
             </ul>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">

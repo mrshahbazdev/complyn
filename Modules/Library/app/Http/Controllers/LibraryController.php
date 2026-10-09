@@ -35,4 +35,17 @@ class LibraryController extends Controller
     {
         return view('library::show', ['article' => $article]);
     }
+
+    public function template(LibraryTemplate $template)
+    {
+        return view('library::template', ['template' => $template]);
+    }
+
+    public function downloadTemplate(LibraryTemplate $template)
+    {
+        return response($template->content, 200, [
+            'Content-Type' => 'text/markdown; charset=UTF-8',
+            'Content-Disposition' => 'attachment; filename="' . \Illuminate\Support\Str::slug($template->name) . '.md"',
+        ]);
+    }
 }
