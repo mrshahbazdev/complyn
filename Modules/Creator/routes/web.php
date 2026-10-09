@@ -9,3 +9,5 @@ Route::middleware(['auth', 'verified', 'module:creator'])->prefix('creator')->na
     Route::post('/drafts/{draft}/generate', [CreatorController::class, 'generate'])->name('drafts.generate');
     Route::put('/drafts/{draft}', [CreatorController::class, 'update'])->name('drafts.update');
 });
+// publish draft into Docs
+Route::post('/creator/drafts/{draft}/publish', [Modules\Creator\Http\Controllers\CreatorController::class, 'publish'])->middleware(['auth','verified','module:creator'])->name('creator.drafts.publish');

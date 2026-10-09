@@ -218,5 +218,15 @@
     "Anlegen": "Create",
     "available": "available",
     "busy": "busy",
-    "unavailable": "unavailable"
+    "unavailable": "unavailable",
+    "KI-Dokumentenerstellung": "AI document creation",
+    "Titel des Dokuments…": "Document title…",
+    "AI generieren": "Generate with AI",
+    "In Docs ablegen": "File in Docs",
+    "In Docs": "In Docs",
+    "Final": "Final",
+    "Entwurf": "Draft",
+    "Entwurf angelegt.": "Draft created.",
+    "AI-Entwurf generiert.": "AI draft generated.",
+    "In Docs abgelegt.": "Filed in Docs."
 }
