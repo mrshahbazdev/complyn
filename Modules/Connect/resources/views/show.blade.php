@@ -14,7 +14,7 @@
             @endforeach
             <form method="POST" action="{{ route('connect.messages.store', $request) }}" class="flex gap-3">
                 @csrf
-                <input name="body" required placeholder="Nachricht…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">
+                <input name="body" required placeholder="{{ __('Nachricht…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">
                 <button class="bg-indigo-600 text-white px-4 py-2 rounded">Senden</button>
             </form>
         </div>

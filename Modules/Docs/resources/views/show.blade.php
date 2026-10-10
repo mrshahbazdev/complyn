@@ -16,7 +16,7 @@
                     <select name="status" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
                         @foreach (['draft','published','archived'] as $s)<option value="{{ $s }}" @selected($doc->status === $s)>{{ $s }}</option>@endforeach
                     </select>
-                    <input name="tags" value="{{ $doc->tags->pluck('name')->join(', ') }}" placeholder="Tags" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+                    <input name="tags" value="{{ $doc->tags->pluck('name')->join(', ') }}" placeholder="{{ __('Tags') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
                     <button class="bg-indigo-600 text-white px-4 py-2 rounded text-sm">Speichern</button>
                 </div>
             </form>

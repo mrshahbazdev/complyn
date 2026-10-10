@@ -11,7 +11,7 @@
         </div>
         <form method="POST" action="{{ route('coach.ask', $session) }}" class="flex gap-3">
             @csrf
-            <textarea name="message" required rows="2" placeholder="Frage an den Coach…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1"></textarea>
+            <textarea name="message" required rows="2" placeholder="{{ __('Frage an den Coach…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1"></textarea>
             <button class="bg-indigo-600 text-white px-4 py-2 rounded self-end">Senden</button>
         </form>
     </div></div>

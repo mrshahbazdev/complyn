@@ -7,10 +7,10 @@
                 <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Kennzahlen") }}</h3>
                 <form method="POST" action="{{ route('score.metrics.store') }}" class="grid grid-cols-2 gap-2 mb-4">
                     @csrf
-                    <input name="key" placeholder="key" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
-                    <input name="name_de" placeholder="Name" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
-                    <input name="value" type="number" step="0.01" placeholder="Wert" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
-                    <input name="unit" placeholder="Einheit" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
+                    <input name="key" placeholder="{{ __('key') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
+                    <input name="name_de" placeholder="{{ __('Name') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
+                    <input name="value" type="number" step="0.01" placeholder="{{ __('Wert') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
+                    <input name="unit" placeholder="{{ __('Einheit') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
                     <button class="bg-indigo-600 text-white px-3 py-1 rounded text-sm col-span-2">Speichern</button>
                 </form>
                 <table class="w-full text-sm">

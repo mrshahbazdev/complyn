@@ -8,10 +8,10 @@
                 <form method="POST" action="{{ route('admin.taxonomy.store', $type) }}" class="flex gap-2 mb-3">
                     @csrf
                     @if ($type === 'tags')
-                        <input name="name" placeholder="Name" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm w-full">
+                        <input name="name" placeholder="{{ __('Name') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm w-full">
                     @else
-                        <input name="name_de" placeholder="DE" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm w-full">
-                        <input name="name_en" placeholder="EN" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm w-full">
+                        <input name="name_de" placeholder="{{ __('DE') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm w-full">
+                        <input name="name_en" placeholder="{{ __('EN') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm w-full">
                     @endif
                     <button class="bg-indigo-600 text-white px-3 py-1 rounded text-sm">+</button>
                 </form>

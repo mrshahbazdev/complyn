@@ -5,8 +5,8 @@
         <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Neues Unternehmen") }}</h3>
         <form method="POST" action="{{ route('admin.companies.store') }}" class="flex flex-wrap gap-3 items-end">
             @csrf
-            <input name="name" placeholder="Name" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-            <input name="slug" placeholder="slug" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <input name="name" placeholder="{{ __('Name') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <input name="slug" placeholder="{{ __('slug') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
             <select name="plan_id" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
                 @foreach ($plans as $p)<option value="{{ $p->id }}">{{ $p->name }}</option>@endforeach
             </select>

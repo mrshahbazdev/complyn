@@ -4,7 +4,7 @@
         @if (session('status'))<div class="bg-green-100 text-green-800 px-4 py-2 rounded">{{ session('status') }}</div>@endif
         <div class="flex justify-between items-center">
             <form method="GET" class="flex gap-2">
-                <input name="q" value="{{ request('q') }}" placeholder="Titel suchen…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
+                <input name="q" value="{{ request('q') }}" placeholder="{{ __('Titel suchen…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
                 <select name="category" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
                     <option value="">{{ __("— Kategorie —") }}</option>
                     @foreach ($categories as $c)<option value="{{ $c->id }}" @selected(request('category') == $c->id)>{{ $c->name_de }}</option>@endforeach

@@ -6,10 +6,10 @@
             <form method="POST" action="{{ route('exchange.store') }}" class="space-y-3">
                 @csrf
                 <div class="flex gap-3">
-                    <input name="title" placeholder="Titel (z. B. ISO 9001 Beratung gesucht)" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">
+                    <input name="title" placeholder="{{ __('Titel (z. B. ISO 9001 Beratung gesucht)') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">
                     <select name="type" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200"><option value="need">{{ __("Suche") }}</option><option value="offer">{{ __("Angebot") }}</option></select>
                 </div>
-                <textarea name="description" rows="2" placeholder="Beschreibung…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea>
+                <textarea name="description" rows="2" placeholder="{{ __('Beschreibung…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea>
                 <button class="bg-indigo-600 text-white px-4 py-2 rounded">Eintragen</button>
             </form>
         </div>
@@ -30,7 +30,7 @@
             <div x-show="open" class="mt-3">
                 <form method="POST" action="{{ route('exchange.inquire', $l) }}" class="flex gap-3">
                     @csrf
-                    <input name="message" required placeholder="Deine Nachricht…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1 text-sm">
+                    <input name="message" required placeholder="{{ __('Deine Nachricht…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1 text-sm">
                     <button class="bg-indigo-600 text-white px-3 py-1 rounded text-sm">Senden</button>
                 </form>
                 @foreach ($l->inquiries as $i)<div class="text-xs text-gray-500 mt-1">— {{ $i->message }}</div>@endforeach

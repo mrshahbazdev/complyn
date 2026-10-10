@@ -5,8 +5,8 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
             <form method="POST" action="{{ route('connect.store') }}" class="space-y-3">
                 @csrf
-                <input name="title" placeholder="Neue Anfrage — Titel" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full">
-                <textarea name="description" rows="2" placeholder="Beschreibung…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea>
+                <input name="title" placeholder="{{ __('Neue Anfrage — Titel') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full">
+                <textarea name="description" rows="2" placeholder="{{ __('Beschreibung…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea>
                 <button class="bg-indigo-600 text-white px-4 py-2 rounded">Absenden</button>
             </form>
         </div>

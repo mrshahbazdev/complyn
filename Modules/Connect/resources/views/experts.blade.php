@@ -4,7 +4,7 @@
         @if (session('status'))<div class="bg-green-100 text-green-800 px-4 py-2 rounded">{{ session('status') }}</div>@endif
         <div class="bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 shadow-sm p-5">
             <form method="GET" class="flex flex-wrap gap-2">
-                <input name="specialty" value="{{ request('specialty') }}" placeholder="Fachgebiet…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
+                <input name="specialty" value="{{ request('specialty') }}" placeholder="{{ __('Fachgebiet…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
                 <select name="industry_id" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
                     <option value="">{{ __("— Branche —") }}</option>
                     @foreach ($industries as $i)<option value="{{ $i->id }}" @selected(request('industry_id') == $i->id)>{{ $i->name_de }}</option>@endforeach
@@ -32,7 +32,7 @@
                 </select>
                 <input name="location" placeholder="{{ __('Ort') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
                 <input name="experience_years" type="number" min="0" placeholder="{{ __('Jahre Erfahrung') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm w-36">
-                <input name="hourly_rate" type="number" step="0.01" min="0" placeholder="€/h" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm w-24">
+                <input name="hourly_rate" type="number" step="0.01" min="0" placeholder="{{ __('€/h') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm w-24">
                 <button class="bg-slate-900 text-white px-3 py-1.5 rounded text-sm">+ {{ __('Expertenprofil') }}</button>
             </form>
         </div>

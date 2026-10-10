@@ -5,9 +5,9 @@
         <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Neuer Benutzer") }}</h3>
         <form method="POST" action="{{ route('admin.users.store') }}" class="flex flex-wrap gap-3 items-end">
             @csrf
-            <input name="name" placeholder="Name" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-            <input name="email" type="email" placeholder="E-Mail" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-            <input name="password" type="password" placeholder="Passwort" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <input name="name" placeholder="{{ __('Name') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <input name="email" type="email" placeholder="{{ __('E-Mail') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <input name="password" type="password" placeholder="{{ __('Passwort') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
             <select name="company_id" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
                 <option value="">{{ __("— Unternehmen —") }}</option>
                 @foreach ($companies as $c)<option value="{{ $c->id }}">{{ $c->name }}</option>@endforeach

@@ -5,7 +5,7 @@
         <div class="bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 shadow-sm p-5">
             <form method="POST" action="{{ route('core.obligations.store') }}" class="flex flex-wrap gap-2">
                 @csrf
-                <input name="title" required placeholder="Titel der Pflicht…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm flex-1 min-w-48">
+                <input name="title" required placeholder="{{ __('Titel der Pflicht…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm flex-1 min-w-48">
                 <input name="next_due_at" type="date" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
                 <select name="interval_months" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
                     <option value="12">{{ __("jährlich") }}</option><option value="6">{{ __("halbjährlich") }}</option>

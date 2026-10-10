@@ -5,7 +5,7 @@
         <div class="bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 shadow-sm p-5">
             <form method="POST" action="{{ route('core.evidences.store') }}" enctype="multipart/form-data" class="flex flex-wrap gap-2">
                 @csrf
-                <input name="title" required placeholder="Nachweis-Titel…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm flex-1 min-w-48">
+                <input name="title" required placeholder="{{ __('Nachweis-Titel…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm flex-1 min-w-48">
                 <select name="core_obligation_id" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
                     <option value="">{{ __("— Pflicht —") }}</option>
                     @foreach ($obligations as $o)<option value="{{ $o->id }}">{{ $o->title }}</option>@endforeach

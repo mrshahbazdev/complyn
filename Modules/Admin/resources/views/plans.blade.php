@@ -5,9 +5,9 @@
         <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Neuer Tarif") }}</h3>
         <form method="POST" action="{{ route('admin.plans.store') }}" class="flex flex-wrap gap-3 items-end">
             @csrf
-            <input name="name" placeholder="Name" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-            <input name="slug" placeholder="slug" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-            <input name="price_cents" type="number" placeholder="Preis (Cent)" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <input name="name" placeholder="{{ __('Name') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <input name="slug" placeholder="{{ __('slug') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <input name="price_cents" type="number" placeholder="{{ __('Preis (Cent)') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
             <button class="bg-indigo-600 text-white px-4 py-2 rounded">Anlegen</button>
         </form>
     </div>

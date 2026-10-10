@@ -5,8 +5,8 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
             <form method="POST" action="{{ route('community.posts.store') }}" class="space-y-3">
                 @csrf
-                <input name="title" placeholder="Neuer Beitrag — Titel" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full">
-                <textarea name="body" required rows="3" placeholder="Text…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea>
+                <input name="title" placeholder="{{ __('Neuer Beitrag — Titel') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full">
+                <textarea name="body" required rows="3" placeholder="{{ __('Text…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea>
                 <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __("Veröffentlichen") }}</button>
             </form>
         </div>
@@ -25,7 +25,7 @@
             <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Gruppen") }}</h3>
             <form method="POST" action="{{ route('community.groups.store') }}" class="flex gap-3 mb-3">
                 @csrf
-                <input name="name" placeholder="Gruppenname" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">
+                <input name="name" placeholder="{{ __('Gruppenname') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">
                 <button class="bg-indigo-600 text-white px-4 py-2 rounded">Anlegen</button>
             </form>
             <ul class="text-sm text-gray-800 dark:text-gray-200 space-y-1">

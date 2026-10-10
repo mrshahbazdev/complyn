@@ -11,7 +11,7 @@
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
         <form method="POST" action="{{ route('admin.mcp.store') }}" class="flex gap-3 items-end">
             @csrf
-            <input name="name" placeholder="Token-Name" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <input name="name" placeholder="{{ __('Token-Name') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
             <select name="scope" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
                 <option value="read">{{ __("read") }}</option><option value="content">{{ __("content") }}</option><option value="full">{{ __("full") }}</option>
             </select>
