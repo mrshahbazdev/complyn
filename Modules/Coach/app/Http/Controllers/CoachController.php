@@ -54,7 +54,7 @@ class CoachController extends Controller
     {
         $company = $request->user()->companies()->firstOrFail();
         CoachChecklist::create($request->validate(['title' => 'required|string|max:255']) + ['company_id' => $company->id]);
-        return back()->with('status', 'Checkliste angelegt.');
+        return back()->with('status', __('Checkliste angelegt.'));
     }
 
     public function recommendations(Request $request)
@@ -119,7 +119,7 @@ class CoachController extends Controller
     {
         $company = $request->user()->companies()->firstOrFail();
         $company->update($request->validate(['industry_id' => 'required|exists:industries,id']));
-        return back()->with('status', 'Branche gespeichert.');
+        return back()->with('status', __('Branche gespeichert.'));
     }
 
     private function dutyCatalog(): array

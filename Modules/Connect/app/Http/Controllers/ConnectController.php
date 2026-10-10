@@ -47,7 +47,7 @@ class ConnectController extends Controller
     {
         abort_unless($connectRequest->company_id === $this->company($request)->id, 403);
         $connectRequest->update(['status' => 'closed']);
-        return back()->with('status', 'Anfrage geschlossen.');
+        return back()->with('status', __('Anfrage geschlossen.'));
     }
 
     public function experts(Request $request)
@@ -88,5 +88,5 @@ class ConnectController extends Controller
             'availability' => 'nullable|in:available,busy,unavailable',
             'bio' => 'nullable|string',
         ]) + ['company_id' => $company->id, 'user_id' => $request->user()->id]);
-        return back()->with('status', 'Expertenprofil angelegt.');
+        return back()->with('status', __('Expertenprofil angelegt.'));
     }}

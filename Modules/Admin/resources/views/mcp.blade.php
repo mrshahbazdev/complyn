@@ -1,5 +1,5 @@
 <x-admin::layout>
-    <x-slot:title>MCP-Tokens</x-slot:title>
+    <x-slot:title>{{ __('MCP-Tokens') }}</x-slot:title>
 
     @if ($newToken)
         <div class="bg-yellow-50 dark:bg-yellow-900 border border-yellow-300 rounded p-4">
@@ -15,7 +15,7 @@
             <select name="scope" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
                 <option value="read">{{ __("read") }}</option><option value="content">{{ __("content") }}</option><option value="full">{{ __("full") }}</option>
             </select>
-            <button class="bg-indigo-600 text-white px-4 py-2 rounded">Token erstellen</button>
+            <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __('Token erstellen') }}</button>
         </form>
     </div>
 

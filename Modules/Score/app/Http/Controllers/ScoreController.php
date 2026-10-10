@@ -30,7 +30,7 @@ class ScoreController extends Controller
             ['company_id' => $company->id, 'key' => $request->input('key')],
             $request->validate(['key' => 'required|string|max:100', 'name_de' => 'required|string|max:255', 'value' => 'required|numeric', 'unit' => 'nullable|string|max:50'])
         );
-        return back()->with('status', 'Kennzahl gespeichert.');
+        return back()->with('status', __('Kennzahl gespeichert.'));
     }
 
     public function generateReport(Request $request)
@@ -66,7 +66,7 @@ class ScoreController extends Controller
             'score' => $score,
             'breakdown' => $all->all(),
         ]);
-        return back()->with('status', "Report erstellt: {$score}/100");
+        return back()->with('status', __('Report erstellt: :score/100', ['score'=>$score]));
     }
 
     public function leaderboard(Request $request)

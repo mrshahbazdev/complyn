@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200">Unternehmens-Einstellungen</h2></x-slot>
+    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200">{{ __('Unternehmens-Einstellungen') }}</h2></x-slot>
     <div class="py-8"><div class="max-w-2xl mx-auto sm:px-6 lg:px-8 space-y-6">
         @if (session('status'))<div class="bg-green-100 text-green-800 px-4 py-2 rounded">{{ session('status') }}</div>@endif
         @if ($company)
@@ -14,7 +14,7 @@
                         @foreach ($industries as $i)<option value="{{ $i->id }}" @selected($company->industry_id === $i->id)>{{ $i->name_de }}</option>@endforeach
                     </select></div>
                 <div class="text-sm text-gray-500">Tarif: {{ $company->plan?->name }} · Slug: {{ $company->slug }}</div>
-                <button class="bg-indigo-600 text-white px-4 py-2 rounded">Speichern</button>
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __('Speichern') }}</button>
             </form>
         </div>
         @else

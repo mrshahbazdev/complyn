@@ -1,5 +1,5 @@
 <x-admin::layout>
-    <x-slot:title>Tarife</x-slot:title>
+    <x-slot:title>{{ __('Tarife') }}</x-slot:title>
 
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
         <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Neuer Tarif") }}</h3>

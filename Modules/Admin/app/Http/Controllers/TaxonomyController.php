@@ -39,7 +39,7 @@ class TaxonomyController extends Controller
 
         $model::create($data);
 
-        return back()->with('status', 'Eintrag angelegt.');
+        return back()->with('status', __('Eintrag angelegt.'));
     }
 
     public function destroy(string $type, int $id): RedirectResponse
@@ -47,6 +47,6 @@ class TaxonomyController extends Controller
         $model = self::TYPES[$type] ?? abort(404);
         $model::findOrFail($id)->delete();
 
-        return back()->with('status', 'Eintrag gelöscht.');
+        return back()->with('status', __('Eintrag gelöscht.'));
     }
 }

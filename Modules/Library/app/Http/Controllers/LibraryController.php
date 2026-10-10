@@ -28,7 +28,7 @@ class LibraryController extends Controller
         LibraryArticle::create($request->validate([
             'title' => 'required|string|max:255', 'body' => 'required|string', 'category_id' => 'nullable|exists:categories,id',
         ]) + ['company_id' => $company->id]);
-        return back()->with('status', 'Artikel gespeichert.');
+        return back()->with('status', __('Artikel gespeichert.'));
     }
 
     public function show(LibraryArticle $article)

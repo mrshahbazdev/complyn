@@ -4,7 +4,7 @@
         @if (session('status'))<div class="bg-green-100 text-green-800 px-4 py-2 rounded">{{ session('status') }}</div>@endif
         <form method="GET" class="flex gap-2">
             <input name="q" value="{{ request('q') }}" placeholder="{{ __('Artikel suchen…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">
-            <button class="bg-indigo-600 text-white px-4 py-2 rounded">Suchen</button>
+            <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __('Suchen') }}</button>
         </form>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
             <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Artikel") }}</h3>
@@ -31,7 +31,7 @@
                     @foreach ($categories as $c)<option value="{{ $c->id }}">{{ $c->name_de }}</option>@endforeach
                 </select>
                 <textarea name="body" required rows="4" placeholder="{{ __('Inhalt…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea>
-                <button class="bg-indigo-600 text-white px-4 py-2 rounded">Speichern</button>
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __('Speichern') }}</button>
             </form>
         </div>
     </div></div>

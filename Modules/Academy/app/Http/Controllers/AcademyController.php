@@ -45,7 +45,7 @@ class AcademyController extends Controller
             'options' => array_values(array_filter($request->input('options', []))),
             'correct' => (int) $request->input('correct', 0),
         ]);
-        return back()->with('status', 'Lernfrage angelegt.');
+        return back()->with('status', __('Lernfrage angelegt.'));
     }
 
     public function attempt(Request $request, AcademyLesson $lesson)
@@ -61,5 +61,5 @@ class AcademyController extends Controller
         if ($score >= 60) {
             \App\Models\AcademyProgress::firstOrCreate(['academy_lesson_id' => $lesson->id, 'user_id' => $request->user()->id]);
         }
-        return back()->with('status', "Test abgelegt — {$score}% (".($score >= 60 ? 'bestanden' : 'nicht bestanden').")");
+        return back()->with('status', __('Test abgelegt — :score% (:result)', ['score'=>$score, 'result'=>$score >= 60 ? __('bestanden') : __('nicht bestanden')]));
     }}

@@ -49,7 +49,7 @@ class CoreController extends Controller
             'path' => $path, 'original_name' => $f->getClientOriginalName(),
             'size' => $f->getSize(), 'mime' => $f->getMimeType(),
         ]);
-        return back()->with('status', 'Datei hochgeladen.');
+        return back()->with('status', __('Datei hochgeladen.'));
     }
 
     public function download(Request $request, File $file)
@@ -63,7 +63,7 @@ class CoreController extends Controller
         abort_unless($file->company_id === $this->company($request)->id, 403);
         Storage::disk(config('filesystems.documents_disk', 'local'))->delete($file->path);
         $file->delete();
-        return back()->with('status', 'Datei gelöscht.');
+        return back()->with('status', __('Datei gelöscht.'));
     }
 
     public function notifications(Request $request)
@@ -101,6 +101,6 @@ class CoreController extends Controller
             'name' => 'required|string|max:255',
             'industry_id' => 'nullable|exists:industries,id',
         ]));
-        return back()->with('status', 'Einstellungen gespeichert.');
+        return back()->with('status', __('Einstellungen gespeichert.'));
     }
 }

@@ -9,7 +9,7 @@
                 <div class="text-xs text-gray-500 mt-2">{{ $c->lessons_count }} Lektionen</div>
             </a>
             @empty
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5 text-sm text-gray-500 col-span-2">Noch keine Kurse angelegt — Admin kann sie im Admin-Bereich verwalten.</div>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5 text-sm text-gray-500 col-span-2">{{ __('Noch keine Kurse angelegt — Admin kann sie im Admin-Bereich verwalten.') }}</div>
             @endforelse
         </div>
     </div></div>

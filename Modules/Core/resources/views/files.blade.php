@@ -6,7 +6,7 @@
             <form method="POST" action="{{ route('files.upload') }}" enctype="multipart/form-data" class="flex gap-3 items-center">
                 @csrf
                 <input type="file" name="file" required class="text-sm text-gray-700 dark:text-gray-300">
-                <button class="bg-indigo-600 text-white px-4 py-2 rounded">Hochladen</button>
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __('Hochladen') }}</button>
             </form>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">

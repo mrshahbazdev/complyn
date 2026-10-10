@@ -68,7 +68,7 @@ class DocsController extends Controller
             $doc->syncTagNames(array_map('trim', explode(',', $request->input('tags'))));
         }
 
-        return redirect()->route('docs.show', $doc)->with('status', 'Dokument angelegt.');
+        return redirect()->route('docs.show', $doc)->with('status', __('Dokument angelegt.'));
     }
 
     public function show(Request $request, Document $document)
@@ -90,7 +90,7 @@ class DocsController extends Controller
             $doc->syncTagNames(array_map('trim', explode(',', $request->input('tags'))));
         }
 
-        return back()->with('status', 'Dokument aktualisiert.');
+        return back()->with('status', __('Dokument aktualisiert.'));
     }
 
     public function destroy(Request $request, Document $document)
@@ -100,7 +100,7 @@ class DocsController extends Controller
         foreach ($doc->versions as $v) { $disk->delete($v->path); }
         $doc->delete();
 
-        return redirect()->route('docs.index')->with('status', 'Dokument gelöscht.');
+        return redirect()->route('docs.index')->with('status', __('Dokument gelöscht.'));
     }
 
     public function uploadVersion(Request $request, Document $document, StorageService $storage)
@@ -115,7 +115,7 @@ class DocsController extends Controller
             'original_name' => $f->getClientOriginalName(), 'size' => $f->getSize(), 'mime' => $f->getMimeType(),
         ]);
 
-        return back()->with('status', 'Neue Version hochgeladen.');
+        return back()->with('status', __('Neue Version hochgeladen.'));
     }
 
     public function download(Request $request, Document $document, int $version)
@@ -133,5 +133,5 @@ class DocsController extends Controller
             'released_at' => $document->released_at ? null : now(),
             'status' => $document->released_at ? 'draft' : 'released',
         ]);
-        return back()->with('status', $document->released_at ? 'Dokument freigegeben.' : 'Freigabe zurückgezogen.');
+        return back()->with('status', $document->released_at ? __('Dokument freigegeben.') : __('Freigabe zurückgezogen.'));
     }}

@@ -9,9 +9,9 @@
                     <option value="">{{ __("— Kategorie —") }}</option>
                     @foreach ($categories as $c)<option value="{{ $c->id }}" @selected(request('category') == $c->id)>{{ $c->name_de }}</option>@endforeach
                 </select>
-                <button class="bg-gray-600 text-white px-3 py-1 rounded text-sm">Filtern</button>
+                <button class="bg-gray-600 text-white px-3 py-1 rounded text-sm">{{ __('Filtern') }}</button>
             </form>
-            <a href="{{ route('docs.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded text-sm">+ Neues Dokument</a>
+            <a href="{{ route('docs.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded text-sm">{{ __('+ Neues Dokument') }}</a>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
             <table class="w-full text-sm">

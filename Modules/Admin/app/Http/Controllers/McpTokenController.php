@@ -28,14 +28,14 @@ class McpTokenController extends Controller
 
         [, $plain] = McpToken::issue($data['name'], $data['scope']);
 
-        return back()->with('status', 'Token erstellt — nur einmal sichtbar!')->with('new_token', $plain);
+        return back()->with('status', __('Token erstellt — nur einmal sichtbar!'))->with('new_token', $plain);
     }
 
     public function destroy(McpToken $mcpToken): RedirectResponse
     {
         $mcpToken->delete();
 
-        return back()->with('status', 'Token gelöscht.');
+        return back()->with('status', __('Token gelöscht.'));
     }
 
     public function auditLogs(): View

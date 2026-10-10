@@ -46,7 +46,7 @@ class CoreComplianceController extends Controller
             'next_due_at' => 'nullable|date',
         ]) + ['company_id' => $company->id]);
 
-        return back()->with('status', 'Pflicht angelegt.');
+        return back()->with('status', __('Pflicht angelegt.'));
     }
 
     public function updateObligationStatus(Request $request, CoreObligation $obligation)
@@ -61,7 +61,7 @@ class CoreComplianceController extends Controller
             ]);
         }
 
-        return back()->with('status', 'Pflicht aktualisiert.');
+        return back()->with('status', __('Pflicht aktualisiert.'));
     }
 
     public function assignResponsible(Request $request, CoreObligation $obligation)
@@ -77,7 +77,7 @@ class CoreComplianceController extends Controller
             ['company_id' => $company->id, 'role' => $data['role'] ?? 'Verantwortlich'],
         );
 
-        return back()->with('status', 'Verantwortung zugewiesen.');
+        return back()->with('status', __('Verantwortung zugewiesen.'));
     }
 
     // Fristen
@@ -103,7 +103,7 @@ class CoreComplianceController extends Controller
             'responsible_id' => 'nullable|exists:users,id',
         ]) + ['company_id' => $company->id]);
 
-        return back()->with('status', 'Frist angelegt.');
+        return back()->with('status', __('Frist angelegt.'));
     }
 
     public function toggleDeadline(Request $request, CoreDeadline $deadline)
@@ -119,7 +119,7 @@ class CoreComplianceController extends Controller
         abort_unless($deadline->company_id === $this->company($request)->id, 403);
         $deadline->delete();
 
-        return back()->with('status', 'Frist gelöscht.');
+        return back()->with('status', __('Frist gelöscht.'));
     }
 
     // Aufgaben
@@ -143,7 +143,7 @@ class CoreComplianceController extends Controller
             'assigned_to' => 'nullable|exists:users,id',
         ]) + ['company_id' => $company->id]);
 
-        return back()->with('status', 'Aufgabe angelegt.');
+        return back()->with('status', __('Aufgabe angelegt.'));
     }
 
     public function toggleTask(Request $request, CoreTask $task)
@@ -159,7 +159,7 @@ class CoreComplianceController extends Controller
         abort_unless($task->company_id === $this->company($request)->id, 403);
         $task->delete();
 
-        return back()->with('status', 'Aufgabe gelöscht.');
+        return back()->with('status', __('Aufgabe gelöscht.'));
     }
 
     // Nachweise
@@ -196,7 +196,7 @@ class CoreComplianceController extends Controller
         }
         CoreEvidence::create($data + ['company_id' => $company->id, 'file_id' => $fileId]);
 
-        return back()->with('status', 'Nachweis angelegt.');
+        return back()->with('status', __('Nachweis angelegt.'));
     }
 
     public function destroyEvidence(Request $request, CoreEvidence $evidence)
@@ -204,6 +204,6 @@ class CoreComplianceController extends Controller
         abort_unless($evidence->company_id === $this->company($request)->id, 403);
         $evidence->delete();
 
-        return back()->with('status', 'Nachweis gelöscht.');
+        return back()->with('status', __('Nachweis gelöscht.'));
     }
 }

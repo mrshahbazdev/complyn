@@ -52,7 +52,7 @@ class AdminController extends Controller
 
         Company::create($data);
 
-        return back()->with('status', 'Unternehmen angelegt.');
+        return back()->with('status', __('Unternehmen angelegt.'));
     }
 
     public function updateCompany(Request $request, Company $company): RedirectResponse
@@ -65,14 +65,14 @@ class AdminController extends Controller
 
         $company->update($data);
 
-        return back()->with('status', 'Unternehmen aktualisiert.');
+        return back()->with('status', __('Unternehmen aktualisiert.'));
     }
 
     public function destroyCompany(Company $company): RedirectResponse
     {
         $company->delete();
 
-        return back()->with('status', 'Unternehmen gelöscht.');
+        return back()->with('status', __('Unternehmen gelöscht.'));
     }
 
     public function toggleCompanyModule(Request $request, Company $company, PlatformModule $module): RedirectResponse
@@ -80,7 +80,7 @@ class AdminController extends Controller
         $enabled = $request->boolean('enabled');
         $company->moduleOverrides()->syncWithoutDetaching([$module->id => ['enabled' => $enabled]]);
 
-        return back()->with('status', 'Modul '.($enabled ? 'aktiviert' : 'deaktiviert').'.');
+        return back()->with('status', __('Modul :state.', ['state'=>$enabled ? __('aktiviert') : __('deaktiviert')]));
     }
 
     public function users(): View
@@ -113,7 +113,7 @@ class AdminController extends Controller
             $user->companies()->attach($data['company_id'], ['role' => $data['role'] ?? 'member']);
         }
 
-        return back()->with('status', 'Benutzer angelegt.');
+        return back()->with('status', __('Benutzer angelegt.'));
     }
 
     public function updateUser(Request $request, User $user): RedirectResponse
@@ -125,7 +125,7 @@ class AdminController extends Controller
 
         $user->update(['name' => $data['name'], 'is_platform_admin' => $request->boolean('is_platform_admin')]);
 
-        return back()->with('status', 'Benutzer aktualisiert.');
+        return back()->with('status', __('Benutzer aktualisiert.'));
     }
 
     public function destroyUser(User $user): RedirectResponse
@@ -133,7 +133,7 @@ class AdminController extends Controller
         abort_if($user->id === request()->user()->id, 422, 'Eigenes Konto kann nicht gelöscht werden.');
         $user->delete();
 
-        return back()->with('status', 'Benutzer gelöscht.');
+        return back()->with('status', __('Benutzer gelöscht.'));
     }
 
     public function attachCompany(Request $request, User $user): RedirectResponse
@@ -145,7 +145,7 @@ class AdminController extends Controller
 
         $user->companies()->syncWithoutDetaching([$data['company_id'] => ['role' => $data['role']]]);
 
-        return back()->with('status', 'Unternehmen zugeordnet.');
+        return back()->with('status', __('Unternehmen zugeordnet.'));
     }
 
     public function plans(): View
@@ -166,7 +166,7 @@ class AdminController extends Controller
 
         Plan::create($data + ['is_active' => true]);
 
-        return back()->with('status', 'Tarif angelegt.');
+        return back()->with('status', __('Tarif angelegt.'));
     }
 
     public function updatePlan(Request $request, Plan $plan): RedirectResponse
@@ -177,7 +177,7 @@ class AdminController extends Controller
             'is_active' => 'boolean',
         ]) + ['is_active' => $request->boolean('is_active')]);
 
-        return back()->with('status', 'Tarif aktualisiert.');
+        return back()->with('status', __('Tarif aktualisiert.'));
     }
 
     public function togglePlanModule(Request $request, Plan $plan, PlatformModule $module): RedirectResponse
@@ -188,7 +188,7 @@ class AdminController extends Controller
             $plan->modules()->detach($module->id);
         }
 
-        return back()->with('status', 'Tarif-Modul aktualisiert.');
+        return back()->with('status', __('Tarif-Modul aktualisiert.'));
     }
 
     public function modules(): View
@@ -205,6 +205,6 @@ class AdminController extends Controller
             'status' => ['required', Rule::in(PlatformModule::STATUSES)],
         ]));
 
-        return back()->with('status', 'Modul-Status aktualisiert.');
+        return back()->with('status', __('Modul-Status aktualisiert.'));
     }
 }

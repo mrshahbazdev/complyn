@@ -11,7 +11,7 @@
                     <input name="name_de" placeholder="{{ __('Name') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
                     <input name="value" type="number" step="0.01" placeholder="{{ __('Wert') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
                     <input name="unit" placeholder="{{ __('Einheit') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
-                    <button class="bg-indigo-600 text-white px-3 py-1 rounded text-sm col-span-2">Speichern</button>
+                    <button class="bg-indigo-600 text-white px-3 py-1 rounded text-sm col-span-2">{{ __('Speichern') }}</button>
                 </form>
                 <table class="w-full text-sm">
                     @foreach ($metrics as $m)
@@ -22,7 +22,7 @@
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="font-semibold text-gray-900 dark:text-gray-100">{{ __("Reports") }}</h3>
-                    <form method="POST" action="{{ route('score.reports.generate') }}">@csrf<button class="bg-indigo-600 text-white px-3 py-1 rounded text-sm">Report erstellen</button></form>
+                    <form method="POST" action="{{ route('score.reports.generate') }}">@csrf<button class="bg-indigo-600 text-white px-3 py-1 rounded text-sm">{{ __('Report erstellen') }}</button></form>
                 </div>
                 <ul class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
                     @foreach ($reports as $r)

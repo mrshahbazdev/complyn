@@ -17,7 +17,7 @@
                         @foreach (['draft','published','archived'] as $s)<option value="{{ $s }}" @selected($doc->status === $s)>{{ $s }}</option>@endforeach
                     </select>
                     <input name="tags" value="{{ $doc->tags->pluck('name')->join(', ') }}" placeholder="{{ __('Tags') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-                    <button class="bg-indigo-600 text-white px-4 py-2 rounded text-sm">Speichern</button>
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded text-sm">{{ __('Speichern') }}</button>
                 </div>
             </form>
             <form method="POST" action="{{ route('docs.destroy', $doc) }}" onsubmit="return confirm('Löschen?')" class="mt-3">
@@ -29,7 +29,7 @@
             <form method="POST" action="{{ route('docs.versions.upload', $doc) }}" enctype="multipart/form-data" class="flex gap-3 mb-3">
                 @csrf
                 <input type="file" name="file" required class="text-sm text-gray-700 dark:text-gray-300">
-                <button class="bg-indigo-600 text-white px-3 py-1 rounded text-sm">Neue Version</button>
+                <button class="bg-indigo-600 text-white px-3 py-1 rounded text-sm">{{ __('Neue Version') }}</button>
             </form>
             <table class="w-full text-sm">
                 @foreach ($doc->versions->sortByDesc('version') as $v)

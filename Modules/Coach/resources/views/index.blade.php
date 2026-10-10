@@ -6,7 +6,7 @@
             <form method="POST" action="{{ route('coach.sessions.store') }}" class="flex gap-3">
                 @csrf
                 <input name="topic" placeholder="{{ __('Neues Coaching-Thema…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">
-                <button class="bg-indigo-600 text-white px-4 py-2 rounded">Starten</button>
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __('Starten') }}</button>
             </form>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">

@@ -6,13 +6,13 @@
             </h2>
             <nav class="flex gap-4 text-sm">
                 <a href="{{ route('admin.dashboard') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">Dashboard</a>
-                <a href="{{ route('admin.companies') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">Unternehmen</a>
-                <a href="{{ route('admin.users') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">Benutzer</a>
-                <a href="{{ route('admin.plans') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">Tarife</a>
-                <a href="{{ route('admin.modules') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">Module</a>
+                <a href="{{ route('admin.companies') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">{{ __('Unternehmen') }}</a>
+                <a href="{{ route('admin.users') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">{{ __('Benutzer') }}</a>
+                <a href="{{ route('admin.plans') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">{{ __('Tarife') }}</a>
+                <a href="{{ route('admin.modules') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">{{ __('Module') }}</a>
                 <a href="{{ route('admin.taxonomy') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">Taxonomie</a>
                 <a href="{{ route('admin.mcp.index') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">MCP</a>
-                <a href="{{ route('admin.audit') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">Audit-Log</a>
+                <a href="{{ route('admin.audit') }}" class="text-gray-600 dark:text-gray-300 hover:text-indigo-500">{{ __('Audit-Log') }}</a>
             </nav>
         </div>
     </x-slot>

@@ -52,7 +52,7 @@ class CommunityController extends Controller
     {
         $company = $this->company($request);
         CommunityGroup::create($request->validate(['name' => 'required|string|max:255', 'description' => 'nullable|string']) + ['company_id' => $company->id]);
-        return back()->with('status', 'Gruppe angelegt.');
+        return back()->with('status', __('Gruppe angelegt.'));
     }
 
     public function vote(Request $request, \App\Models\CommunityComment $comment)

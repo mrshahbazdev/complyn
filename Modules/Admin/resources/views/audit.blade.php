@@ -1,5 +1,5 @@
 <x-admin::layout>
-    <x-slot:title>MCP Audit-Log</x-slot:title>
+    <x-slot:title>{{ __('MCP Audit-Log') }}</x-slot:title>
 
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
         <table class="w-full text-sm">

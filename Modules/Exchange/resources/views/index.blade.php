@@ -10,7 +10,7 @@
                     <select name="type" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200"><option value="need">{{ __("Suche") }}</option><option value="offer">{{ __("Angebot") }}</option></select>
                 </div>
                 <textarea name="description" rows="2" placeholder="{{ __('Beschreibung…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea>
-                <button class="bg-indigo-600 text-white px-4 py-2 rounded">Eintragen</button>
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __('Eintragen') }}</button>
             </form>
         </div>
         @foreach ($listings as $l)
@@ -21,7 +21,7 @@
                     <span class="text-xs text-gray-500 ml-1">· {{ $l->status }}</span></div>
                 <div class="flex gap-2">
                     @if ($l->status==='open')
-                    <button @click="open=!open" class="text-indigo-500 text-xs">Anfragen</button>
+                    <button @click="open=!open" class="text-indigo-500 text-xs">{{ __('Anfragen') }}</button>
                     <form method="POST" action="{{ route('exchange.close', $l) }}">@csrf @method('PUT')<button class="text-red-500 text-xs">{{ __("Schließen") }}</button></form>
                     @endif
                 </div>

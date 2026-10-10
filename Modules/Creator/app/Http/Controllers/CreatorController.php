@@ -72,7 +72,7 @@ class CreatorController extends Controller
             'type' => 'required|in:'.implode(',', array_keys(self::TYPES)),
         ]) + ['company_id' => $company->id, 'user_id' => $request->user()->id]);
 
-        return back()->with('status', 'Entwurf angelegt.');
+        return back()->with('status', __('Entwurf angelegt.'));
     }
 
     public function generate(Request $request, CreatorDraft $draft)
@@ -84,7 +84,7 @@ class CreatorController extends Controller
             'Titel: '.$draft->title
         )]);
 
-        return back()->with('status', 'AI-Entwurf generiert.');
+        return back()->with('status', __('AI-Entwurf generiert.'));
     }
 
     public function update(Request $request, CreatorDraft $draft)
@@ -92,7 +92,7 @@ class CreatorController extends Controller
         abort_unless($draft->company_id === $this->company($request)->id, 403);
         $draft->update($request->validate(['content' => 'nullable|string', 'status' => 'required|in:draft,final']));
 
-        return back()->with('status', 'Gespeichert.');
+        return back()->with('status', __('Gespeichert.'));
     }
 
     /** Finalize: write content to shared storage and file it in Docs. */
@@ -129,6 +129,6 @@ class CreatorController extends Controller
 
         $draft->update(['document_id' => $document->id, 'status' => 'final']);
 
-        return back()->with('status', 'In Docs abgelegt.');
+        return back()->with('status', __('In Docs abgelegt.'));
     }
 }
