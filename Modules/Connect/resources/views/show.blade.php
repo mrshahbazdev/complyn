@@ -5,7 +5,7 @@
             <div class="text-xs text-gray-500 mb-2">{{ $request->user->name }} · Status: {{ $request->status }}</div>
             <div class="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">{{ $request->description }}</div>
             @if ($request->status === 'open')
-            <form method="POST" action="{{ route('connect.close', $request) }}" class="mt-3">@csrf @method('PUT')<button class="text-red-500 text-sm">Schließen</button></form>
+            <form method="POST" action="{{ route('connect.close', $request) }}" class="mt-3">@csrf @method('PUT')<button class="text-red-500 text-sm">{{ __("Schließen") }}</button></form>
             @endif
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5 space-y-3">

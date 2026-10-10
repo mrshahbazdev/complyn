@@ -8,7 +8,7 @@
                 @if ($doneLessonIds->contains($l->id))
                     <span class="text-green-600 text-xs">{{ __("✓ Fertig") }}</span>
                 @else
-                    <form method="POST" action="{{ route('academy.complete', $l->id) }}">@csrf<button class="text-indigo-500 text-xs">Abschließen</button></form>
+                    <form method="POST" action="{{ route('academy.complete', $l->id) }}">@csrf<button class="text-indigo-500 text-xs">{{ __("Abschließen") }}</button></form>
                 @endif
             </div>
             <div x-show="open" class="mt-3 text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">{{ $l->content }}

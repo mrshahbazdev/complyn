@@ -22,7 +22,7 @@
                 <div class="flex gap-2">
                     @if ($l->status==='open')
                     <button @click="open=!open" class="text-indigo-500 text-xs">Anfragen</button>
-                    <form method="POST" action="{{ route('exchange.close', $l) }}">@csrf @method('PUT')<button class="text-red-500 text-xs">Schließen</button></form>
+                    <form method="POST" action="{{ route('exchange.close', $l) }}">@csrf @method('PUT')<button class="text-red-500 text-xs">{{ __("Schließen") }}</button></form>
                     @endif
                 </div>
             </div>

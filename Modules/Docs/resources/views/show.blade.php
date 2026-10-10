@@ -21,7 +21,7 @@
                 </div>
             </form>
             <form method="POST" action="{{ route('docs.destroy', $doc) }}" onsubmit="return confirm('Löschen?')" class="mt-3">
-                @csrf @method('DELETE')<button class="text-red-500 text-sm">Dokument löschen</button>
+                @csrf @method('DELETE')<button class="text-red-500 text-sm">{{ __("Dokument löschen") }}</button>
             </form>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">

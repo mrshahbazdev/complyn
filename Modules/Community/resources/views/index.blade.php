@@ -7,7 +7,7 @@
                 @csrf
                 <input name="title" placeholder="Neuer Beitrag — Titel" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full">
                 <textarea name="body" required rows="3" placeholder="Text…" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea>
-                <button class="bg-indigo-600 text-white px-4 py-2 rounded">Veröffentlichen</button>
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __("Veröffentlichen") }}</button>
             </form>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
