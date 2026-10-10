@@ -375,5 +375,6 @@
     "Modul :state.": "Module :state.",
     "aktiviert": "activated",
     "deaktiviert": "deactivated",
-    "Report erstellt: :score/100": "Report created: :score/100"
+    "Report erstellt: :score/100": "Report created: :score/100",
+    "Absenden": "Submit"
 }

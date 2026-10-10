@@ -7,7 +7,7 @@
                 @csrf
                 <input name="title" placeholder="{{ __('Neue Anfrage — Titel') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full">
                 <textarea name="description" rows="2" placeholder="{{ __('Beschreibung…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea>
-                <button class="bg-indigo-600 text-white px-4 py-2 rounded">Absenden</button>
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __('Absenden') }}</button>
             </form>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">

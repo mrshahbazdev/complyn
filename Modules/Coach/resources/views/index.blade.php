@@ -25,7 +25,7 @@
             <form method="POST" action="{{ route('coach.checklists.store') }}" class="flex gap-3 mb-3">
                 @csrf
                 <input name="title" placeholder="{{ __('Neue Checkliste…') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1">
-                <button class="bg-indigo-600 text-white px-4 py-2 rounded">Anlegen</button>
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __('Anlegen') }}</button>
             </form>
             <ul class="text-sm text-gray-800 dark:text-gray-200 space-y-1">
                 @foreach ($checklists as $c)<li>• {{ $c->title }}</li>@endforeach
