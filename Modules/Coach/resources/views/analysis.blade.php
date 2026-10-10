@@ -25,7 +25,7 @@
                         <div class="text-xs text-gray-500">{{ __('Intervall') }}: {{ $r['interval'] }}</div>
                     </div>
                     @unless ($r['covered'])
-                        <a href="{{ route('core.index') }}" class="text-amber-600 text-xs whitespace-nowrap">{{ __('Pflicht anlegen →') }}</a>
+                        <a href="{{ route('core.obligations') }}" class="text-amber-600 text-xs whitespace-nowrap">{{ __('Pflicht anlegen →') }}</a>
                     @endunless
                 </div>
             @endforeach
