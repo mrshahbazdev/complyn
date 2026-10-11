@@ -1,25 +1,25 @@
 <x-admin::layout>
     <x-slot:title>{{ __("Unternehmen") }}</x-slot:title>
 
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-        <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Neues Unternehmen") }}</h3>
+    <div class="card fade-up" style="padding:20px 24px">
+        <h3 class="panel-h">{{ __("Neues Unternehmen") }}</h3>
         <form method="POST" action="{{ route('admin.companies.store') }}" class="flex flex-wrap gap-3 items-end">
             @csrf
-            <input name="name" placeholder="{{ __('Name') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-            <input name="slug" placeholder="{{ __('slug') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-            <select name="plan_id" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <input name="name" placeholder="{{ __('Name') }}" required class="field-input">
+            <input name="slug" placeholder="{{ __('slug') }}" required class="field-input">
+            <select name="plan_id" class="field-input">
                 @foreach ($plans as $p)<option value="{{ $p->id }}">{{ $p->name }}</option>@endforeach
             </select>
-            <select name="industry_id" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <select name="industry_id" class="field-input">
                 <option value="">{{ __("— Branche —") }}</option>
                 @foreach ($industries as $i)<option value="{{ $i->id }}">{{ $i->name_de }}</option>@endforeach
             </select>
-            <button class="bg-indigo-600 text-white px-4 py-2 rounded">Anlegen</button>
+            <button class="btn btn-brand">Anlegen</button>
         </form>
     </div>
 
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5" x-data="{ open: null }">
-        <table class="w-full text-sm">
+    <div class="card fade-up" style="padding:20px 24px" x-data="{ open: null }">
+        <table class="docs">
             <thead><tr class="text-left text-gray-500 border-b dark:border-gray-700">
                 <th class="py-2">{{ __("Name") }}</th><th>{{ __("Tarif") }}</th><th>{{ __("Branche") }}</th><th>{{ __("Benutzer") }}</th><th>{{ __("Module") }}</th><th></th>
             </tr></thead>
@@ -27,16 +27,16 @@
             @foreach ($companies as $c)
                 <tr class="border-b dark:border-gray-700">
                     <td class="py-2 text-gray-800 dark:text-gray-200">{{ $c->name }}</td>
-                    <td class="text-gray-600 dark:text-gray-300">{{ $c->plan?->name }}</td>
-                    <td class="text-gray-600 dark:text-gray-300">{{ $c->industry?->name_de }}</td>
-                    <td class="text-gray-600 dark:text-gray-300">{{ $c->users_count }}</td>
+                    <td class="muted">{{ $c->plan?->name }}</td>
+                    <td class="muted">{{ $c->industry?->name_de }}</td>
+                    <td class="muted">{{ $c->users_count }}</td>
                     <td>
-                        <button @click="open = open === {{ $c->id }} ? null : {{ $c->id }}" class="text-indigo-500 text-xs">Module ({{ $c->enabledModules()->count() }})</button>
+                        <button @click="open = open === {{ $c->id }} ? null : {{ $c->id }}" class="flink">Module ({{ $c->enabledModules()->count() }})</button>
                     </td>
                     <td class="text-right">
                         <form method="POST" action="{{ route('admin.companies.destroy', $c) }}" onsubmit="return confirm('Löschen?')" class="inline">
                             @csrf @method('DELETE')
-                            <button class="text-red-500 text-xs">{{ __("Löschen") }}</button>
+                            <button class="btn btn-outline btn-sm" style="color:#dc2626">{{ __("Löschen") }}</button>
                         </form>
                     </td>
                 </tr>

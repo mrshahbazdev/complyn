@@ -8,19 +8,19 @@
         </div>
     @endif
 
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
+    <div class="card fade-up" style="padding:20px 24px">
         <form method="POST" action="{{ route('admin.mcp.store') }}" class="flex gap-3 items-end">
             @csrf
-            <input name="name" placeholder="{{ __('Token-Name') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-            <select name="scope" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+            <input name="name" placeholder="{{ __('Token-Name') }}" required class="field-input">
+            <select name="scope" class="field-input">
                 <option value="read">{{ __("read") }}</option><option value="content">{{ __("content") }}</option><option value="full">{{ __("full") }}</option>
             </select>
-            <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __('Token erstellen') }}</button>
+            <button class="btn btn-brand">{{ __('Token erstellen') }}</button>
         </form>
     </div>
 
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-        <table class="w-full text-sm">
+    <div class="card fade-up" style="padding:20px 24px">
+        <table class="docs">
             <thead><tr class="text-left text-gray-500 border-b dark:border-gray-700">
                 <th class="py-2">{{ __("Name") }}</th><th>{{ __("Scope") }}</th><th>{{ __("Zuletzt genutzt") }}</th><th>{{ __("Erstellt") }}</th><th></th>
             </tr></thead>
@@ -28,13 +28,13 @@
             @foreach ($tokens as $t)
                 <tr class="border-b dark:border-gray-700">
                     <td class="py-2 text-gray-800 dark:text-gray-200">{{ $t->name }}</td>
-                    <td><span class="px-2 py-0.5 rounded text-xs bg-gray-100 dark:bg-gray-700">{{ $t->scope }}</span></td>
-                    <td class="text-gray-600 dark:text-gray-300">{{ $t->last_used_at?->diffForHumans() ?? '—' }}</td>
-                    <td class="text-gray-600 dark:text-gray-300">{{ $t->created_at->format('d.m.Y') }}</td>
+                    <td><span class="badge blue">{{ $t->scope }}</span></td>
+                    <td class="muted">{{ $t->last_used_at?->diffForHumans() ?? '—' }}</td>
+                    <td class="muted">{{ $t->created_at->format('d.m.Y') }}</td>
                     <td class="text-right">
                         <form method="POST" action="{{ route('admin.mcp.destroy', $t) }}" onsubmit="return confirm('Token widerrufen?')">
                             @csrf @method('DELETE')
-                            <button class="text-red-500 text-xs">{{ __("Widerrufen") }}</button>
+                            <button class="btn btn-outline btn-sm" style="color:#dc2626">{{ __("Widerrufen") }}</button>
                         </form>
                     </td>
                 </tr>

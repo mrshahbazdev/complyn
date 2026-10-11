@@ -1,25 +1,25 @@
 <x-admin::layout>
     <x-slot:title>{{ __('Tarife') }}</x-slot:title>
 
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-        <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Neuer Tarif") }}</h3>
+    <div class="card fade-up" style="padding:20px 24px">
+        <h3 class="panel-h">{{ __("Neuer Tarif") }}</h3>
         <form method="POST" action="{{ route('admin.plans.store') }}" class="flex flex-wrap gap-3 items-end">
             @csrf
-            <input name="name" placeholder="{{ __('Name') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-            <input name="slug" placeholder="{{ __('slug') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-            <input name="price_cents" type="number" placeholder="{{ __('Preis (Cent)') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-            <button class="bg-indigo-600 text-white px-4 py-2 rounded">Anlegen</button>
+            <input name="name" placeholder="{{ __('Name') }}" required class="field-input">
+            <input name="slug" placeholder="{{ __('slug') }}" required class="field-input">
+            <input name="price_cents" type="number" placeholder="{{ __('Preis (Cent)') }}" required class="field-input">
+            <button class="btn btn-brand">Anlegen</button>
         </form>
     </div>
 
     @foreach ($plans as $plan)
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5" x-data="{ open: false }">
+        <div class="card fade-up" style="padding:20px 24px" x-data="{ open: false }">
             <div class="flex justify-between items-center">
                 <div>
-                    <span class="font-semibold text-gray-900 dark:text-gray-100">{{ $plan->name }}</span>
+                    <span class="panel-h">{{ $plan->name }}</span>
                     <span class="text-sm text-gray-500 ml-2">{{ number_format($plan->price_cents / 100, 2, ',') }} € · {{ $plan->companies_count }} Unternehmen · {{ $plan->is_active ? 'aktiv' : 'inaktiv' }}</span>
                 </div>
-                <button @click="open = !open" class="text-indigo-500 text-sm">Module ({{ $plan->modules->count() }})</button>
+                <button @click="open = !open" class="flink">Module ({{ $plan->modules->count() }})</button>
             </div>
             <div x-show="open" x-cloak class="mt-3 flex flex-wrap gap-2">
                 @foreach ($modules as $m)

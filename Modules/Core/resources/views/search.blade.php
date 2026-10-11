@@ -1,21 +1,34 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200">{{ __("Suche") }}</h2></x-slot>
-    <div class="py-8"><div class="max-w-4xl mx-auto sm:px-6 lg:px-8 space-y-6">
-        <form method="GET" class="flex gap-2">
-            <input name="q" value="{{ $q }}" placeholder="{{ __('Dokumente durchsuchen…') }}" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full">
-            <button class="bg-indigo-600 text-white px-4 py-2 rounded">{{ __('Suchen') }}</button>
-        </form>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-            <ul class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                @forelse ($results as $d)
-                    <li class="py-2">
-                        <a href="{{ route('docs.show', $d) }}" class="text-indigo-600 font-medium">{{ $d->title }}</a>
-                        <span class="text-gray-500 text-xs ml-2">{{ $d->status }}</span>
-                    </li>
-                @empty
-                    <li class="py-2 text-gray-500">{{ $q ? 'Keine Treffer.' : 'Suchbegriff eingeben.' }}</li>
-                @endforelse
-            </ul>
+<div class="stack">
+    <div class="page-head fade-up">
+        <div class="ph-left">
+            <span class="p-ic sky"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></span>
+            <div><h1>{{ __("Suche") }}</h1><p class="ph-sub">{{ __('Dokumente durchsuchen') }}</p></div>
         </div>
-    </div></div>
+    </div>
+    <div class="card panel fade-up" style="animation-delay:.05s">
+        <div class="panel-body">
+        <form method="GET" class="filter-bar">
+            <div class="mini-search" style="flex:1"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><input name="q" value="{{ $q }}" placeholder="{{ __('Dokumente durchsuchen…') }}" style="width:100%"></div>
+            <button class="btn btn-brand">{{ __('Suchen') }}</button>
+        </form>
+        </div>
+    </div>
+    <div class="card table-card fade-up" style="animation-delay:.1s">
+        <div class="table-scroll">
+        <table class="docs">
+            <tbody>
+            @forelse ($results as $d)
+                <tr>
+                    <td><a href="{{ route('docs.show', $d) }}" class="flink" style="font-weight:700">{{ $d->title }}</a></td>
+                    <td><span class="badge blue"><span class="cdot"></span>{{ $d->status }}</span></td>
+                </tr>
+            @empty
+                <tr><td colspan="2"><div class="empty"><p>{{ $q ? __('Keine Treffer.') : __('Suchbegriff eingeben.') }}</p></div></td></tr>
+            @endforelse
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
 </x-app-layout>

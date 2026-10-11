@@ -1,13 +1,13 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200">Creator — {{ __('KI-Dokumentenerstellung') }}</h2></x-slot>
+    <x-slot name="header">Creator — {{ __('KI-Dokumentenerstellung') }}</x-slot>
     <div class="py-8"><div class="max-w-5xl mx-auto sm:px-6 lg:px-8 space-y-6">
         @if (session('status'))<div class="bg-green-100 text-green-800 px-4 py-2 rounded">{{ session('status') }}</div>@endif
         @error('content')<div class="bg-red-100 text-red-800 px-4 py-2 rounded">{{ $message }}</div>@enderror
-        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 shadow-sm p-5">
+        <div class="card fade-up" style="padding:20px 24px">
             <form method="POST" action="{{ route('creator.drafts.store') }}" class="flex flex-wrap gap-3">
                 @csrf
-                <input name="title" placeholder="{{ __('Titel des Dokuments…') }}" required class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 flex-1 min-w-[200px]">
-                <select name="type" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+                <input name="title" placeholder="{{ __('Titel des Dokuments…') }}" required class="field-input">
+                <select name="type" class="field-input">
                     @foreach ($types as $key => $label)
                         <option value="{{ $key }}">{{ $label }}</option>
                     @endforeach
@@ -16,13 +16,13 @@
             </form>
         </div>
         @foreach ($drafts as $d)
-        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 shadow-sm p-5" x-data="{open:false}">
+        <div class="card fade-up" style="padding:20px 24px" x-data="{open:false}">
             <div class="flex justify-between items-center gap-3">
                 <div><span class="font-medium text-gray-800 dark:text-gray-200">{{ $d->title }}</span>
                     <span class="text-xs text-gray-500 ml-2">{{ $types[$d->type] ?? $d->type }} · {{ $d->status }}</span></div>
                 <div class="flex gap-3 shrink-0">
                     <form method="POST" action="{{ route('creator.drafts.generate', $d) }}">@csrf<button class="text-amber-600 text-xs font-semibold underline">{{ __('AI generieren') }}</button></form>
-                    <button @click="open=!open" class="text-gray-500 text-xs">{{ __('Bearbeiten') }}</button>
+                    <button @click="open=!open" class="muted">{{ __('Bearbeiten') }}</button>
                     @if ($d->document_id)
                         <a href="{{ route('docs.show', $d->document_id) }}" class="text-green-600 text-xs font-semibold underline">{{ __('In Docs') }}</a>
                     @elseif ($d->content)
@@ -33,9 +33,9 @@
             <div x-show="open" class="mt-3">
                 <form method="POST" action="{{ route('creator.drafts.update', $d) }}">
                     @csrf @method('PUT')
-                    <textarea name="content" rows="8" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full text-sm font-mono">{{ $d->content }}</textarea>
+                    <textarea name="content" rows="8" class="field-input">{{ $d->content }}</textarea>
                     <div class="flex gap-3 mt-2">
-                        <select name="status" class="rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 text-sm">
+                        <select name="status" class="field-input">
                             <option value="draft" @selected($d->status==='draft')>{{ __('Entwurf') }}</option>
                             <option value="final" @selected($d->status==='final')>{{ __('Final') }}</option>
                         </select>
@@ -46,5 +46,5 @@
         </div>
         @endforeach
         {{ $drafts->links() }}
-    </div></div>
+</div>
 </x-app-layout>

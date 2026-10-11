@@ -1,14 +1,21 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200">{{ __("Handlungsempfehlungen") }}</h2></x-slot>
-    <div class="py-8"><div class="max-w-4xl mx-auto sm:px-6 lg:px-8 space-y-4">
-        <div class="grid gap-3">
-            @foreach ($recs as $r)
-                <div class="bg-white dark:bg-gray-800 rounded-2xl border shadow-sm p-5 border-l-4 {{ $r['severity'] === 'critical' ? 'border-l-red-500' : ($r['severity'] === 'warning' ? 'border-l-amber-500' : ($r['severity'] === 'success' ? 'border-l-green-500' : 'border-l-slate-400')) }} border-slate-200">
-                    <div class="font-semibold text-gray-900 dark:text-gray-100">{{ $r['title'] }}</div>
-                    <div class="text-sm text-gray-600 dark:text-gray-300 mt-1">{{ $r['body'] }}</div>
-                </div>
-            @endforeach
+<div class="stack">
+    <div class="page-head fade-up">
+        <div class="ph-left">
+            <span class="p-ic amber"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span>
+            <div><h1>{{ __("Handlungsempfehlungen") }}</h1><p class="ph-sub">{{ __('Vom Coach generierte Maßnahmen') }}</p></div>
         </div>
-        <a href="{{ route('coach.index') }}" class="text-amber-600 text-sm">← {{ __('Zum KI-Coach') }}</a>
-    </div></div>
+    </div>
+    @forelse ($recs as $r)
+        <div class="card fade-up dl-card" style="border-left:4px solid {{ $r['severity'] === 'critical' ? '#ef4444' : ($r['severity'] === 'warning' ? '#f59e0b' : ($r['severity'] === 'success' ? '#10b981' : '#94a3b8')) }};padding:16px 20px">
+            <div>
+                <p style="font-weight:700;color:var(--slate-900)">{{ $r['title'] }}</p>
+                <p class="muted" style="margin-top:4px">{{ $r['body'] }}</p>
+            </div>
+        </div>
+    @empty
+        <div class="card empty"><p>{{ __('Keine Empfehlungen.') }}</p></div>
+    @endforelse
+    <a href="{{ route('coach.index') }}" class="flink">← {{ __('Zum KI-Coach') }}</a>
+</div>
 </x-app-layout>

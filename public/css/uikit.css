@@ -590,3 +590,29 @@
     .m-brand { display:flex; }
   }
 
+
+/* compliyn page helpers */
+.alert-band{padding:14px 20px;background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;font-size:14px;font-weight:600}
+.ph-sub{margin:2px 0 0;color:var(--slate-500);font-size:14px}
+.page-head h1{font-size:26px;font-weight:800;color:var(--slate-950);letter-spacing:-.02em;margin:0}
+.page-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.empty{padding:40px 20px;text-align:center;color:var(--slate-400);font-size:14px}
+.tag-red{color:#dc2626}.tag-green{color:#059669}.tag-amber{color:#d97706}
+.ava.lg{width:40px;height:40px;font-size:13px}
+dl.dl-info{display:grid;grid-template-columns:140px 1fr;gap:6px 16px;font-size:14px}
+dl.dl-info dt{color:var(--slate-500)}dl.dl-info dd{margin:0;color:var(--slate-800);font-weight:600}
+.status-badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700}
+.field textarea{width:100%;border:1px solid var(--slate-200);border-radius:12px;padding:10px 14px;font-size:14px;outline:0;background:#fff}
+.field select{width:100%;border:1px solid var(--slate-200);border-radius:12px;padding:10px 14px;font-size:14px;outline:0;background:#fff}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.form-grid{grid-template-columns:1fr}}
+.q-list{display:flex;flex-direction:column;gap:12px}
+.p-ic.green{background:#dcfce7;color:#16a34a}
+.p-ic.slate{background:var(--slate-100);color:var(--slate-600)}
+.stack .field-input{display:block;width:100%;border:1px solid var(--slate-200);border-radius:12px;padding:10px 14px;font-size:14px;outline:0;background:#fff}
+.stack .field-input:focus{border-color:var(--brand-500,#f59e0b)}
+.panel-h{font-weight:700;color:var(--slate-900);margin:0 0 10px}
+.t-strong{font-weight:600;color:var(--slate-900)}
+.stack table{width:100%;font-size:14px}
+.stack td,.stack th{padding:8px 10px;text-align:left;border-bottom:1px solid var(--slate-100)}
+.stack .docs td,.stack .docs th{border-bottom:none}

@@ -1,26 +1,27 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200">{{ __('Neues Dokument') }}</h2></x-slot>
-    <div class="py-8"><div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-            <form method="POST" action="{{ route('docs.store') }}" enctype="multipart/form-data" class="space-y-4">
-                @csrf
-                <div><label class="text-sm text-gray-600 dark:text-gray-300">{{ __("Titel") }}</label>
-                    <input name="title" required class="mt-1 rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></div>
-                <div><label class="text-sm text-gray-600 dark:text-gray-300">{{ __("Beschreibung") }}</label>
-                    <textarea name="description" rows="3" class="mt-1 rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></textarea></div>
-                <div><label class="text-sm text-gray-600 dark:text-gray-300">{{ __("Kategorie") }}</label>
-                    <select name="category_id" class="mt-1 rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full">
-                        <option value="">—</option>
-                        @foreach ($categories as $c)<option value="{{ $c->id }}">{{ $c->name_de }}</option>@endforeach
-                    </select></div>
-                <div><label class="text-sm text-gray-600 dark:text-gray-300">{{ __("Tags (Komma-getrennt)") }}</label>
-                    <input name="tags" class="mt-1 rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></div>
-                <div><label class="text-sm text-gray-600 dark:text-gray-300">{{ __("Ablaufdatum") }}</label>
-                    <input type="date" name="expires_at" class="mt-1 rounded border-gray-300 dark:bg-gray-700 dark:text-gray-200 w-full"></div>
-                <div><label class="text-sm text-gray-600 dark:text-gray-300">{{ __("Datei") }}</label>
-                    <input type="file" name="file" class="mt-1 text-sm text-gray-700 dark:text-gray-300"></div>
-                <button class="bg-slate-900 text-white px-4 py-2 rounded">{{ __('Anlegen') }}</button>
-            </form>
+<div class="stack">
+    <div class="page-head fade-up">
+        <div class="ph-left">
+            <span class="p-ic violet"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
+            <div><h1>{{ __('Neues Dokument') }}</h1><p class="ph-sub">{{ __('Dokument anlegen') }}</p></div>
         </div>
-    </div></div>
+    </div>
+    <div class="card panel fade-up" style="animation-delay:.05s;max-width:720px">
+        <div class="panel-body">
+        <form method="POST" action="{{ route('docs.store') }}" enctype="multipart/form-data" class="form-grid">
+            @csrf
+            <div class="field" style="grid-column:1/-1"><label>{{ __("Titel") }}</label><input name="title" required></div>
+            <div class="field" style="grid-column:1/-1"><label>{{ __("Beschreibung") }}</label><textarea name="description" rows="3"></textarea></div>
+            <div class="field"><label>{{ __("Kategorie") }}</label>
+                <select name="category_id"><option value="">—</option>
+                    @foreach ($categories as $c)<option value="{{ $c->id }}">{{ $c->name_de }}</option>@endforeach
+                </select></div>
+            <div class="field"><label>{{ __("Ablaufdatum") }}</label><input type="date" name="expires_at"></div>
+            <div class="field"><label>{{ __("Tags (Komma-getrennt)") }}</label><input name="tags"></div>
+            <div class="field"><label>{{ __("Datei") }}</label><input type="file" name="file" class="f-select" style="padding:7px 10px"></div>
+            <div style="grid-column:1/-1"><button class="btn btn-brand">{{ __('Anlegen') }}</button></div>
+        </form>
+        </div>
+    </div>
+</div>
 </x-app-layout>
