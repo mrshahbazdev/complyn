@@ -1,72 +1,110 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200">Dashboard — {{ $company?->name }}</h2></x-slot>
-    <div class="py-8"><div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+    <x-slot name="header">{{ __('Dashboard') }}</x-slot>
+
+    <div class="stack">
+        <div class="page-head fade-up">
+            <div>
+                <div class="date">{{ now()->locale($locale ?? 'de')->translatedFormat('l, d. F Y') }}</div>
+                <h1>{{ __('Guten Tag') }}, {{ auth()->user()->name }}</h1>
+                <div class="sub">{{ $company?->name ?? __('Kein Unternehmen zugeordnet') }}</div>
+            </div>
+        </div>
+
         @if ($company)
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <a href="{{ route('docs.index') }}" class="bg-white dark:bg-gray-800 rounded-lg p-5 shadow block">
-                <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ $docsCount }}</div>
-                <div class="text-sm text-gray-500">{{ __("Dokumente") }}</div>
+        <div class="kpi-grid fade-up" style="animation-delay:.05s">
+            <a href="{{ route('docs.index') }}" class="card kpi" style="--acc: var(--brand-500); text-decoration:none;">
+                <div class="kpi-top"><span class="kpi-label">{{ __('Dokumente') }}</span></div>
+                <div class="kpi-val">{{ $docsCount }}</div>
+                <div class="kpi-foot"><span class="kpi-sub">{{ __('Gesamt im Archiv') }}</span></div>
             </a>
-            <a href="{{ route('files.index') }}" class="bg-white dark:bg-gray-800 rounded-lg p-5 shadow block">
-                <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ $filesCount }}</div>
-                <div class="text-sm text-gray-500">{{ __("Dateien") }}</div>
+            <a href="{{ route('files.index') }}" class="card kpi" style="--acc: var(--slate-500); text-decoration:none;">
+                <div class="kpi-top"><span class="kpi-label">{{ __('Dateien') }}</span></div>
+                <div class="kpi-val">{{ $filesCount }}</div>
+                <div class="kpi-foot"><span class="kpi-sub">{{ __('Hochgeladene Dateien') }}</span></div>
             </a>
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-5 shadow">
-                <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ $modules->count() }}</div>
-                <div class="text-sm text-gray-500">{{ __("Aktive Module") }}</div>
-            </div>
+            <a href="{{ route('core.tasks') }}" class="card kpi" style="--acc: #2563eb; text-decoration:none;">
+                <div class="kpi-top"><span class="kpi-label">{{ __('Offene Aufgaben') }}</span></div>
+                <div class="kpi-val">{{ $openTasks->count() }}</div>
+                <div class="kpi-foot"><span class="kpi-sub">{{ __('Zu erledigen') }}</span></div>
+            </a>
+            <a href="{{ route('core.obligations') }}" class="card kpi" style="--acc: {{ $overdueObligations ? '#dc2626' : '#16a34a' }}; text-decoration:none;">
+                <div class="kpi-top"><span class="kpi-label">{{ __('Überfällig') }}</span></div>
+                <div class="kpi-val">{{ $overdueObligations }}</div>
+                <div class="kpi-foot"><span class="kpi-sub">{{ $overdueObligations ? __('Sofort handeln!') : __('Alles im grünen Bereich') }}</span></div>
+            </a>
         </div>
-        <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-                <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Nächste Fristen") }} <span class="text-xs text-gray-500">(≤30 {{ __("Tage") }})</span></h3>
-                @if ($overdueObligations)
-                    <a href="{{ route('core.obligations') }}" class="block mb-2 text-sm text-red-600 font-medium">{{ $overdueObligations }} {{ __("überfällige Pflicht(en)") }}</a>
-                @endif
-                <ul class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+
+        <div class="grid row2 fade-up" style="animation-delay:.1s">
+            <div class="card panel">
+                <div class="panel-head">
+                    <h3>{{ __('Nächste Fristen') }} <span class="muted">(≤30 {{ __('Tage') }})</span></h3>
+                    <a href="{{ route('core.deadlines') }}" class="link">{{ __('Alle →') }}</a>
+                </div>
+                <div class="panel-body">
                     @forelse ($upcomingDeadlines as $d)
-                        <li class="py-2 flex justify-between gap-3">
-                            <span class="text-gray-800 dark:text-gray-200">{{ $d->title }}</span>
-                            <span class="text-gray-500 whitespace-nowrap">{{ optional($d->due_at)->format('d.m.Y') }}</span>
-                        </li>
+                        @php
+                            $over = $d->due_at && $d->due_at->isPast();
+                            $cls = $over ? 'p-red' : ($d->due_at && $d->due_at->lte(now()->addDays(7)) ? 'p-amber' : '');
+                        @endphp
+                        <div class="dl-card {{ $cls }}">
+                            <div class="dl-date"><b>{{ optional($d->due_at)->format('d') }}</b><span>{{ optional($d->due_at)->translatedFormat('M') }}</span></div>
+                            <div class="dl-info">
+                                <div class="dl-title">{{ $d->title }}</div>
+                                @if($over)<div class="dl-sub" style="color:#dc2626;">{{ __('Überfällig') }}</div>@endif
+                            </div>
+                        </div>
                     @empty
-                        <li class="py-2 text-gray-500">{{ __("Keine Fristen in den nächsten 30 Tagen.") }}</li>
+                        <p class="muted">{{ __('Keine Fristen in den nächsten 30 Tagen.') }}</p>
                     @endforelse
-                </ul>
+                </div>
             </div>
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-                <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Offene Aufgaben") }}</h3>
-                <ul class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+
+            <div class="card panel">
+                <div class="panel-head">
+                    <h3>{{ __('Offene Aufgaben') }}</h3>
+                    <a href="{{ route('core.tasks') }}" class="link">{{ __('Alle →') }}</a>
+                </div>
+                <div class="panel-body">
                     @forelse ($openTasks as $t)
-                        <li class="py-2 flex justify-between gap-3">
-                            <span class="text-gray-800 dark:text-gray-200">{{ $t->title }}</span>
-                            <span class="text-gray-500 whitespace-nowrap">{{ optional($t->due_at)->format('d.m.Y') }}</span>
-                        </li>
+                        <div class="dl-card">
+                            <div class="dl-info">
+                                <div class="dl-title">{{ $t->title }}</div>
+                                <div class="dl-sub">{{ optional($t->due_at)->format('d.m.Y') }}</div>
+                            </div>
+                        </div>
                     @empty
-                        <li class="py-2 text-gray-500">{{ __("Keine offenen Aufgaben.") }}</li>
+                        <p class="muted">{{ __('Keine offenen Aufgaben.') }}</p>
                     @endforelse
-                </ul>
+                </div>
+            </div>
+
+            <div class="card panel">
+                <div class="panel-head"><h3>{{ __('Benachrichtigungen') }}</h3>
+                    <a href="{{ route('notifications.index') }}" class="link">{{ __('Alle →') }}</a>
+                </div>
+                <div class="panel-body">
+                    @forelse ($notifications as $n)
+                        <div class="dl-card">
+                            <div class="dl-info"><div class="dl-title">{{ $n->data['title'] ?? class_basename($n->type) }}</div>
+                            <div class="dl-sub">{{ $n->created_at->diffForHumans() }}</div></div>
+                        </div>
+                    @empty
+                        <p class="muted">{{ __('Keine neuen Benachrichtigungen.') }}</p>
+                    @endforelse
+                </div>
             </div>
         </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Aktive Module") }}</h3>
-            <div class="flex flex-wrap gap-2">
-                @foreach ($modules as $m)<span class="px-2 py-1 rounded text-xs bg-indigo-100 text-indigo-800">{{ $m->key }}</span>@endforeach
+
+        <div class="card panel fade-up" style="animation-delay:.15s">
+            <div class="panel-head"><h3>{{ __('Aktive Module') }}</h3></div>
+            <div class="panel-body">
+                @foreach ($modules as $m)<span class="badge" style="margin:2px;">{{ $m->key }}</span>@endforeach
             </div>
         </div>
         @else
-        <div class="bg-yellow-50 dark:bg-yellow-900 border border-yellow-300 rounded p-5 text-sm">
-            Kein Unternehmen zugeordnet — bitte den Admin um Zuordnung bitten.
-        </div>
+        <div class="card panel"><div class="panel-body">
+            <p>{{ __('Kein Unternehmen zugeordnet — bitte den Admin um Zuordnung bitten.') }}</p>
+        </div></div>
         @endif
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
-            <h3 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">{{ __("Ungelesene Benachrichtigungen") }}</h3>
-            <ul class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                @forelse ($notifications as $n)
-                    <li class="py-2 text-gray-800 dark:text-gray-200">{{ $n->data['title'] ?? class_basename($n->type) }}</li>
-                @empty
-                    <li class="py-2 text-gray-500">{{ __("Keine neuen Benachrichtigungen.") }}</li>
-                @endforelse
-            </ul>
-        </div>
-    </div></div>
+    </div>
 </x-app-layout>
