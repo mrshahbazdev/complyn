@@ -1,35 +1,33 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2>
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    <x-slot name="header">{{ __('Dashboard') }}</x-slot>
 
-    <div>
-        <div>
-            <div>
-                <p>{{ __('Willkommen zurück') }}</p>
-                <h3>{{ auth()->user()->name }}</h3>
-                <p>{{ auth()->user()->companies->first()?->name ?? '' }}</p>
+    <div class="stack">
+        <div class="page-head fade-up">
+            <div class="ph-left">
+                <div class="p-ic amber">C</div>
+                <div>
+                    <h1>{{ __('Willkommen zurück') }}, {{ auth()->user()->name }}</h1>
+                    <div class="ph-sub">{{ auth()->user()->companies->first()?->name ?? '' }}</div>
+                </div>
             </div>
+        </div>
 
-            <div>
-                <a href="{{ route('docs.index') }}" class="group">
-                    <div class="items-center">D</div>
-                    <h4>{{ __('Docs') }}</h4>
-                    <p>{{ __('Compliance-Dokumente verwalten') }}</p>
-                </a>
-                <a href="{{ route('files.index') }}" class="group">
-                    <div class="items-center">F</div>
-                    <h4>{{ __('Files') }}</h4>
-                    <p>{{ __('Dateien hochladen und teilen') }}</p>
-                </a>
-                <a href="{{ route('library.index') }}" class="group">
-                    <div class="items-center">L</div>
-                    <h4>{{ __('Library') }}</h4>
-                    <p>{{ __('Wissen, Vorlagen und Artikel') }}</p>
-                </a>
-            </div>
+        <div class="kpi-grid fade-up">
+            <a href="{{ route('docs.index') }}" class="card kpi" style="--acc: var(--brand-500); text-decoration:none;">
+                <div class="kpi-top"><span class="kpi-label">{{ __('Docs') }}</span></div>
+                <div class="kpi-val">D</div>
+                <div class="kpi-foot"><span class="kpi-sub">{{ __('Compliance-Dokumente verwalten') }}</span></div>
+            </a>
+            <a href="{{ route('files.index') }}" class="card kpi" style="--acc: var(--slate-500); text-decoration:none;">
+                <div class="kpi-top"><span class="kpi-label">{{ __('Files') }}</span></div>
+                <div class="kpi-val">F</div>
+                <div class="kpi-foot"><span class="kpi-sub">{{ __('Dateien hochladen und teilen') }}</span></div>
+            </a>
+            <a href="{{ route('library.index') }}" class="card kpi" style="--acc: #2563eb; text-decoration:none;">
+                <div class="kpi-top"><span class="kpi-label">{{ __('Library') }}</span></div>
+                <div class="kpi-val">L</div>
+                <div class="kpi-foot"><span class="kpi-sub">{{ __('Wissen, Vorlagen und Artikel') }}</span></div>
+            </a>
         </div>
     </div>
 </x-app-layout>

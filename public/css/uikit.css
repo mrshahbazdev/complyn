@@ -625,3 +625,4 @@ dl.dl-info dt{color:var(--slate-500)}dl.dl-info dd{margin:0;color:var(--slate-80
 .cpn-dd{position:relative;display:inline-block}
 .cpn-dd-menu{position:absolute;top:100%;margin-top:8px;background:#fff;border:1px solid var(--slate-200);border-radius:12px;box-shadow:0 8px 24px -8px rgba(15,23,42,.18);min-width:190px;z-index:60;overflow:hidden}
 .cpn-dd-menu .inner{padding:6px 0}
+.tb-act{display:flex;align-items:center;gap:10px}
