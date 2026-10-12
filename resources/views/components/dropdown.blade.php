@@ -1,19 +1,10 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white'])
+@props(['align' => 'right', 'width' => '48', 'contentClasses' => ''])
 
 @php
-$alignmentClasses = match ($align) {
-    'left' => 'ltr:origin-top-left rtl:origin-top-right start-0',
-    'top' => 'origin-top',
-    default => 'ltr:origin-top-right rtl:origin-top-left end-0',
-};
-
-$width = match ($width) {
-    '48' => 'w-48',
-    default => $width,
-};
+$alignStyle = $align === 'left' ? 'left:0' : 'right:0';
 @endphp
 
-<div x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+<div class="cpn-dd" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
         {{ $trigger }}
     </div>
@@ -25,10 +16,10 @@ $width = match ($width) {
             x-transition:leave="transition ease-in duration-75"
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-95"
-            class="{{ $width }} {{ $alignmentClasses }}"
-            style="display: none;"
+            class="cpn-dd-menu"
+            style="display:none;{{ $alignStyle }}"
             @click="open = false">
-        <div class="{{ $contentClasses }}">
+        <div class="inner {{ $contentClasses }}">
             {{ $content }}
         </div>
     </div>
