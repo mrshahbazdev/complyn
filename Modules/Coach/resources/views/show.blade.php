@@ -18,7 +18,7 @@
         <div class="panel-body" style="border-top:1px solid var(--slate-100)">
         <form method="POST" action="{{ route('coach.ask', $session) }}" class="filter-bar">
             @csrf
-            <div class="field" style="flex:1"><textarea name="message" required rows="2" placeholder="{{ __('Frage an den Coach…') }}"></textarea></div>
+            <div class="field" style="flex:1"><textarea class="field-input" name="message" required rows="2" placeholder="{{ __('Frage an den Coach…') }}"></textarea></div>
             <button class="btn btn-brand">{{ __('Senden') }}</button>
         </form>
         </div>

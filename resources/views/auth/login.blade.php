@@ -6,12 +6,12 @@
         @csrf
         <div class="field">
             <label for="email">{{ __('E-Mail-Adresse') }}</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="name@firma.de" required autofocus autocomplete="username">
+            <input class="field-input" id="email" type="email" name="email" value="{{ old('email') }}" placeholder="name@firma.de" required autofocus autocomplete="username">
             <x-input-error :messages="$errors->get('email')" class="mt-1" />
         </div>
         <div class="field">
             <label for="password">{{ __('Passwort') }}</label>
-            <input id="password" type="password" name="password" placeholder="••••••••" required autocomplete="current-password">
+            <input class="field-input" id="password" type="password" name="password" placeholder="••••••••" required autocomplete="current-password">
             <x-input-error :messages="$errors->get('password')" class="mt-1" />
         </div>
         <div class="login-row">

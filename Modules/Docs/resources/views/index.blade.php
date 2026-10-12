@@ -13,7 +13,7 @@
         <div class="table-head">
             <div class="filter-bar">
                 <form method="GET" class="filter-bar">
-                    <div class="mini-search"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><input name="q" value="{{ request('q') }}" placeholder="{{ __('Titel suchen…') }}"></div>
+                    <div class="mini-search"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><input class="field-input" name="q" value="{{ request('q') }}" placeholder="{{ __('Titel suchen…') }}"></div>
                     <select name="category" class="f-select">
                         <option value="">{{ __("— Kategorie —") }}</option>
                         @foreach ($categories as $c)<option value="{{ $c->id }}" @selected(request('category') == $c->id)>{{ $c->name_de }}</option>@endforeach

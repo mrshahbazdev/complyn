@@ -6,7 +6,7 @@
         @csrf
         <div class="field">
             <label for="email">{{ __('E-Mail-Adresse') }}</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="name@firma.de" required autofocus>
+            <input class="field-input" id="email" type="email" name="email" value="{{ old('email') }}" placeholder="name@firma.de" required autofocus>
             <x-input-error :messages="$errors->get('email')" class="mt-1" />
         </div>
         <button type="submit" class="btn btn-brand btn-block">{{ __('Link senden') }}</button>

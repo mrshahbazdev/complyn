@@ -13,13 +13,13 @@
         <div class="panel-body">
         <form method="POST" action="{{ route('core.obligations.store') }}" class="filter-bar">
             @csrf
-            <div class="field" style="flex:2;min-width:200px"><input name="title" required placeholder="{{ __('Titel der Pflicht…') }}"></div>
-            <div class="field"><input name="next_due_at" type="date"></div>
+            <div class="field" style="flex:2;min-width:200px"><input class="field-input" name="title" required placeholder="{{ __('Titel der Pflicht…') }}"></div>
+            <div class="field"><input class="field-input" name="next_due_at" type="date"></div>
             <select name="interval_months" class="f-select">
                 <option value="12">{{ __("jährlich") }}</option><option value="6">{{ __("halbjährlich") }}</option>
                 <option value="3">{{ __("vierteljährlich") }}</option><option value="24">{{ __("alle 2 Jahre") }}</option>
             </select>
-            <div class="field" style="flex:1.5;min-width:160px"><input name="description" placeholder="{{ __('Beschreibung') }}"></div>
+            <div class="field" style="flex:1.5;min-width:160px"><input class="field-input" name="description" placeholder="{{ __('Beschreibung') }}"></div>
             <button class="btn btn-brand">{{ __('+ Pflicht') }}</button>
         </form>
         </div>

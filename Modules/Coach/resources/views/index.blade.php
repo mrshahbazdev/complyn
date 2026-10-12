@@ -12,7 +12,7 @@
         <div class="panel-body">
         <form method="POST" action="{{ route('coach.sessions.store') }}" class="filter-bar">
             @csrf
-            <div class="field" style="flex:1"><input name="topic" placeholder="{{ __('Neues Coaching-Thema…') }}"></div>
+            <div class="field" style="flex:1"><input class="field-input" name="topic" placeholder="{{ __('Neues Coaching-Thema…') }}"></div>
             <button class="btn btn-brand">{{ __('Starten') }}</button>
         </form>
         </div>
@@ -41,7 +41,7 @@
         <div class="panel-body">
         <form method="POST" action="{{ route('coach.checklists.store') }}" class="filter-bar" style="margin-bottom:12px">
             @csrf
-            <div class="field" style="flex:1"><input name="title" placeholder="{{ __('Neue Checkliste…') }}" required></div>
+            <div class="field" style="flex:1"><input class="field-input" name="title" placeholder="{{ __('Neue Checkliste…') }}" required></div>
             <button class="btn btn-brand">{{ __('Anlegen') }}</button>
         </form>
         <ul class="q-list">

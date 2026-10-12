@@ -5,7 +5,7 @@
         @csrf
         <div class="field">
             <label for="password">{{ __('Passwort') }}</label>
-            <input id="password" type="password" name="password" placeholder="••••••••" required autocomplete="current-password">
+            <input class="field-input" id="password" type="password" name="password" placeholder="••••••••" required autocomplete="current-password">
             <x-input-error :messages="$errors->get('password')" class="mt-1" />
         </div>
         <button type="submit" class="btn btn-brand btn-block">{{ __('Bestätigen') }}</button>

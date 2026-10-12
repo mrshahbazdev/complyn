@@ -13,9 +13,9 @@
         <div class="panel-body">
         <form method="POST" action="{{ route('settings.company') }}">
             @csrf @method('PUT')
-            <div class="field"><label>{{ __("Name") }}</label><input name="name" value="{{ $company->name }}" required></div>
+            <div class="field"><label>{{ __("Name") }}</label><input class="field-input" name="name" value="{{ $company->name }}" required></div>
             <div class="field"><label>{{ __("Branche") }}</label>
-                <select name="industry_id">
+                <select class="field-input" name="industry_id">
                     <option value="">—</option>
                     @foreach ($industries as $i)<option value="{{ $i->id }}" @selected($company->industry_id === $i->id)>{{ $i->name_de }}</option>@endforeach
                 </select></div>

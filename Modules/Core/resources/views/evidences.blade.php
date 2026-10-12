@@ -13,12 +13,12 @@
         <div class="panel-body">
         <form method="POST" action="{{ route('core.evidences.store') }}" enctype="multipart/form-data" class="filter-bar">
             @csrf
-            <div class="field" style="flex:2;min-width:200px"><input name="title" required placeholder="{{ __('Nachweis-Titel…') }}"></div>
+            <div class="field" style="flex:2;min-width:200px"><input class="field-input" name="title" required placeholder="{{ __('Nachweis-Titel…') }}"></div>
             <select name="core_obligation_id" required class="f-select">
                 <option value="">{{ __("— Pflicht —") }}</option>
                 @foreach ($obligations as $o)<option value="{{ $o->id }}">{{ $o->title }}</option>@endforeach
             </select>
-            <div class="field"><input name="note" placeholder="{{ __('Notiz') }}"></div>
+            <div class="field"><input class="field-input" name="note" placeholder="{{ __('Notiz') }}"></div>
             <input name="file" type="file" class="f-select" style="padding:7px 10px">
             <button class="btn btn-brand">{{ __('+ Nachweis') }}</button>
         </form>

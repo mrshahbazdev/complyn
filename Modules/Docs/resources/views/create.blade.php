@@ -10,14 +10,14 @@
         <div class="panel-body">
         <form method="POST" action="{{ route('docs.store') }}" enctype="multipart/form-data" class="form-grid">
             @csrf
-            <div class="field" style="grid-column:1/-1"><label>{{ __("Titel") }}</label><input name="title" required></div>
-            <div class="field" style="grid-column:1/-1"><label>{{ __("Beschreibung") }}</label><textarea name="description" rows="3"></textarea></div>
+            <div class="field" style="grid-column:1/-1"><label>{{ __("Titel") }}</label><input class="field-input" name="title" required></div>
+            <div class="field" style="grid-column:1/-1"><label>{{ __("Beschreibung") }}</label><textarea class="field-input" name="description" rows="3"></textarea></div>
             <div class="field"><label>{{ __("Kategorie") }}</label>
-                <select name="category_id"><option value="">—</option>
+                <select class="field-input" name="category_id"><option value="">—</option>
                     @foreach ($categories as $c)<option value="{{ $c->id }}">{{ $c->name_de }}</option>@endforeach
                 </select></div>
-            <div class="field"><label>{{ __("Ablaufdatum") }}</label><input type="date" name="expires_at"></div>
-            <div class="field"><label>{{ __("Tags (Komma-getrennt)") }}</label><input name="tags"></div>
+            <div class="field"><label>{{ __("Ablaufdatum") }}</label><input class="field-input" type="date" name="expires_at"></div>
+            <div class="field"><label>{{ __("Tags (Komma-getrennt)") }}</label><input class="field-input" name="tags"></div>
             <div class="field"><label>{{ __("Datei") }}</label><input type="file" name="file" class="f-select" style="padding:7px 10px"></div>
             <div style="grid-column:1/-1"><button class="btn btn-brand">{{ __('Anlegen') }}</button></div>
         </form>

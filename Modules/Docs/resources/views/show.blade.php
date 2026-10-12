@@ -19,8 +19,8 @@
         <div class="panel-body">
         <form method="POST" action="{{ route('docs.update', $doc) }}">
             @csrf @method('PUT')
-            <div class="field"><label>{{ __('Titel') }}</label><input name="title" value="{{ $doc->title }}" required></div>
-            <div class="field"><label>{{ __('Beschreibung') }}</label><textarea name="description" rows="2">{{ $doc->description }}</textarea></div>
+            <div class="field"><label>{{ __('Titel') }}</label><input class="field-input" name="title" value="{{ $doc->title }}" required></div>
+            <div class="field"><label>{{ __('Beschreibung') }}</label><textarea class="field-input" name="description" rows="2">{{ $doc->description }}</textarea></div>
             <div class="filter-bar">
                 <select name="category_id" class="f-select">
                     <option value="">{{ __("— Kategorie —") }}</option>
@@ -29,7 +29,7 @@
                 <select name="status" class="f-select">
                     @foreach (['draft','published','archived'] as $s)<option value="{{ $s }}" @selected($doc->status === $s)>{{ $s }}</option>@endforeach
                 </select>
-                <div class="field"><input name="tags" value="{{ $doc->tags->pluck('name')->join(', ') }}" placeholder="{{ __('Tags') }}"></div>
+                <div class="field"><input class="field-input" name="tags" value="{{ $doc->tags->pluck('name')->join(', ') }}" placeholder="{{ __('Tags') }}"></div>
                 <button class="btn btn-brand btn-sm">{{ __('Speichern') }}</button>
             </div>
         </form>

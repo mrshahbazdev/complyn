@@ -13,8 +13,8 @@
         <div class="panel-body">
         <form method="POST" action="{{ route('core.tasks.store') }}" class="filter-bar">
             @csrf
-            <div class="field" style="flex:2;min-width:200px"><input name="title" required placeholder="{{ __('Aufgabe…') }}"></div>
-            <div class="field"><input name="due_at" type="date"></div>
+            <div class="field" style="flex:2;min-width:200px"><input class="field-input" name="title" required placeholder="{{ __('Aufgabe…') }}"></div>
+            <div class="field"><input class="field-input" name="due_at" type="date"></div>
             <select name="assigned_to" class="f-select">
                 <option value="">{{ __("— Zugewiesen an —") }}</option>
                 @foreach ($members as $m)<option value="{{ $m->id }}">{{ $m->name }}</option>@endforeach

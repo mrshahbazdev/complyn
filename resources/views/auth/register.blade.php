@@ -5,27 +5,27 @@
         @csrf
         <div class="field">
             <label for="name">{{ __('Name') }}</label>
-            <input id="name" type="text" name="name" value="{{ old('name') }}" placeholder="Max Mustermann" required autofocus autocomplete="name">
+            <input class="field-input" id="name" type="text" name="name" value="{{ old('name') }}" placeholder="Max Mustermann" required autofocus autocomplete="name">
             <x-input-error :messages="$errors->get('name')" class="mt-1" />
         </div>
         <div class="field">
             <label for="company_name">{{ __('Unternehmen') }}</label>
-            <input id="company_name" type="text" name="company_name" value="{{ old('company_name') }}" placeholder="Musterfirma GmbH" required autocomplete="organization">
+            <input class="field-input" id="company_name" type="text" name="company_name" value="{{ old('company_name') }}" placeholder="Musterfirma GmbH" required autocomplete="organization">
             <x-input-error :messages="$errors->get('company_name')" class="mt-1" />
         </div>
         <div class="field">
             <label for="email">{{ __('E-Mail-Adresse') }}</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="name@firma.de" required autocomplete="username">
+            <input class="field-input" id="email" type="email" name="email" value="{{ old('email') }}" placeholder="name@firma.de" required autocomplete="username">
             <x-input-error :messages="$errors->get('email')" class="mt-1" />
         </div>
         <div class="field">
             <label for="password">{{ __('Passwort') }}</label>
-            <input id="password" type="password" name="password" placeholder="••••••••" required autocomplete="new-password">
+            <input class="field-input" id="password" type="password" name="password" placeholder="••••••••" required autocomplete="new-password">
             <x-input-error :messages="$errors->get('password')" class="mt-1" />
         </div>
         <div class="field">
             <label for="password_confirmation">{{ __('Passwort bestätigen') }}</label>
-            <input id="password_confirmation" type="password" name="password_confirmation" placeholder="••••••••" required autocomplete="new-password">
+            <input class="field-input" id="password_confirmation" type="password" name="password_confirmation" placeholder="••••••••" required autocomplete="new-password">
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-1" />
         </div>
         <button type="submit" class="btn btn-brand btn-block">{{ __('Registrieren') }}</button>

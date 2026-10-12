@@ -13,8 +13,8 @@
         <div class="panel-body">
         <form method="POST" action="{{ route('core.deadlines.store') }}" class="filter-bar">
             @csrf
-            <div class="field" style="flex:2;min-width:200px"><input name="title" required placeholder="{{ __('Frist…') }}"></div>
-            <div class="field"><input name="due_at" type="date" required></div>
+            <div class="field" style="flex:2;min-width:200px"><input class="field-input" name="title" required placeholder="{{ __('Frist…') }}"></div>
+            <div class="field"><input class="field-input" name="due_at" type="date" required></div>
             <select name="core_obligation_id" class="f-select">
                 <option value="">{{ __("— Pflicht —") }}</option>
                 @foreach ($obligations as $o)<option value="{{ $o->id }}">{{ $o->title }}</option>@endforeach
