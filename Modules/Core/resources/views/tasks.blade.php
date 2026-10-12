@@ -38,7 +38,7 @@
                     <td><p style="font-weight:700;{{ $t->status === 'done' ? 'color:var(--slate-400);text-decoration:line-through' : 'color:var(--slate-900)' }}">{{ $t->title }}</p></td>
                     <td>@if ($t->due_at)<span class="duedate">{{ \Illuminate\Support\Carbon::parse($t->due_at)->format('d.m.Y') }}</span>@endif</td>
                     <td>@if ($t->assignee)<div class="doc-cell"><span class="ava sm bg-violet">{{ strtoupper(mb_substr($t->assignee->name,0,2)) }}</span><span style="font-size:13px;font-weight:600">{{ $t->assignee->name }}</span></div>@endif</td>
-                    <td class="text-right">
+                    <td>
                         <div class="filter-bar" style="justify-content:flex-end">
                         <form method="POST" action="{{ route('core.tasks.toggle', $t) }}">@csrf @method('PUT')
                             <button class="badge {{ $t->status === 'done' ? 'green' : 'blue' }}" style="border:0;cursor:pointer"><span class="cdot"></span>{{ $t->status === 'done' ? __('erledigt') : __('offen') }}</button>

@@ -27,9 +27,9 @@
             </div>
             <div class="login-right">
                 <div style="width:100%;max-width:420px">
-                    <a href="/" class="m-brand"><span class="logo-mark">C</span>COMPLYN</a>
+                    <a href="/"><span class="logo-mark">C</span>COMPLYN</a>
                     <div class="login-card fade-up">
-                        <div class="absolute top-6 right-6"></div>
+                        <div></div>
                         {{ $slot }}
                         <div style="margin-top:20px;text-align:center">
                             <span class="check" style="justify-content:center">

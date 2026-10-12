@@ -1,32 +1,32 @@
 <x-admin::layout>
     <x-slot:title>Admin Dashboard</x-slot:title>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div>
         @foreach (['Unternehmen' => $stats['companies'], 'Benutzer' => $stats['users'], 'Module' => $stats['modules'], 'MCP-Calls' => $stats['mcp_calls']] as $label => $value)
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-5 shadow">
-                <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ $value }}</div>
-                <div class="text-sm text-gray-500">{{ $label }}</div>
+            <div>
+                <div>{{ $value }}</div>
+                <div>{{ $label }}</div>
             </div>
         @endforeach
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
+    <div>
+        <div>
             <h3 class="panel-h">{{ __("Neueste Unternehmen") }}</h3>
-            <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+            <ul>
                 @foreach ($companies as $c)
-                    <li class="py-2 flex justify-between text-sm">
+                    <li>
                         <span >{{ $c->name }}</span>
                         <span class="muted">{{ $c->plan?->name }}</span>
                     </li>
                 @endforeach
             </ul>
         </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-5">
+        <div>
             <h3 class="panel-h">{{ __("Letzte MCP-Aufrufe") }}</h3>
-            <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+            <ul>
                 @foreach ($logs as $log)
-                    <li class="py-2 text-sm flex justify-between">
+                    <li>
                         <span >{{ $log->action }}</span>
                         <span class="muted">{{ $log->created_at->diffForHumans() }}</span>
                     </li>

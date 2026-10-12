@@ -34,7 +34,7 @@
             </a>
         </div>
 
-        <div class="grid row2 fade-up" style="animation-delay:.1s">
+        <div class="row2 fade-up" style="animation-delay:.1s">
             <div class="card panel">
                 <div class="panel-head">
                     <h3>{{ __('Nächste Fristen') }} <span class="muted">(≤30 {{ __('Tage') }})</span></h3>

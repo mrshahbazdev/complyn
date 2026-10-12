@@ -6,7 +6,7 @@
         <div class="field">
             <label for="password">{{ __('Passwort') }}</label>
             <input class="field-input" id="password" type="password" name="password" placeholder="••••••••" required autocomplete="current-password">
-            <x-input-error :messages="$errors->get('password')" class="mt-1" />
+            <x-input-error :messages="$errors->get('password')" />
         </div>
         <button type="submit" class="btn btn-brand btn-block">{{ __('Bestätigen') }}</button>
     </form>

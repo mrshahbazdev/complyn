@@ -126,13 +126,13 @@
     </nav>
 
     <div class="side-user">
-        <div class="flex items-center rounded-xl overflow-hidden text-xs font-bold mb-3" style="border:1px solid rgba(255,255,255,.12);">
-            <a href="{{ route('lang.switch', 'de') }}" class="flex-1 text-center py-1.5 {{ $locale === 'de' ? 'bg-amber-500 text-slate-900' : 'text-slate-400' }}">DE</a>
-            <a href="{{ route('lang.switch', 'en') }}" class="flex-1 text-center py-1.5 {{ $locale === 'en' ? 'bg-amber-500 text-slate-900' : 'text-slate-400' }}">EN</a>
+        <div class="items-center" style="border:1px solid rgba(255,255,255,.12);">
+            <a href="{{ route('lang.switch', 'de') }}" class="{{ $locale === 'de' ? 'bg-amber-500 text-slate-900' : 'text-slate-400' }}">DE</a>
+            <a href="{{ route('lang.switch', 'en') }}" class="{{ $locale === 'en' ? 'bg-amber-500 text-slate-900' : 'text-slate-400' }}">EN</a>
         </div>
         <a href="{{ route('profile.edit') }}">
             <div class="avatar">{{ strtoupper(substr($user->name, 0, 1)) }}</div>
-            <div class="min-w-0">
+            <div>
                 <div class="nm">{{ $user->name }}</div>
                 <div class="rl">{{ $user->email }}</div>
             </div>
